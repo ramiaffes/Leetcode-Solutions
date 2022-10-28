@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minIncrementForUnique(vector<int>& nums) {
+        map<int,int>hashing;
+        int ans=0;
+        for(int i=0;i<nums.size();i++){
+            hashing[nums[i]]++;
+            ans=max(ans,nums[i]);
+        }
+    int som=0;
+    for(int i=0;i<=ans;i++){
+        if(hashing[i]>1){
+            som+=hashing[i]-1;
+            if(i<ans){
+            hashing[i+1]+=hashing[i]-1;}
+        }
+    }
+    if(hashing[ans]>1)
+    som+=((hashing[ans]-1)*(hashing[ans]-2))/2;
+    return som;
+    }
+};
