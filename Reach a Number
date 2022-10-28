@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int reachNumber(int target) {
+        int i=0;
+        while(((i*(i+1))/2)<abs(target)){
+            i++;
+        }
+    if(((i*(i+1))/2)==abs(target))return i;
+    while(((i*(i+1))/2)%2!=abs(target)%2){
+        i++;
+    }
+    return i;
+    }
+};
