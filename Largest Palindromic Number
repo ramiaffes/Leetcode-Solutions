@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string largestPalindromic(string num) {
+        map<char,int>hashing;
+        set<int>se;
+        for(int i(0);i<num.length();i++){
+            hashing[num[i]]++;
+            se.insert(num[i]);
+        }
+    string res1;
+    string res2;
+    vector<int>vec1(se.begin(),se.end());
+    reverse(vec1.begin(),vec1.end());
+    for(auto v:vec1){
+        if((v=='0')and(res1.empty()))continue;
+        for(int j(0);j<(hashing[v])/2;j++){
+            string var1(1,v);
+            res1.append(var1);
+            res2.insert(0,var1);
+        }
+    }
+        for(auto v:vec1){
+            if((hashing[v]%2==1)){
+                string var1(1,v);
+                res1.append(var1);
+                break;
+            }
+            
+        }
+    string res3;
+    if(res1.empty()){
+        res3="0";
+    }
+        else{  res3.append(res1);
+    res3.append(res2);}
+     return res3;   
+    }
+};
