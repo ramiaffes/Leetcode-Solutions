@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int numWays(string s) {
+        vector<int>dp(s.length());
+        dp[0]=(s[0]=='1');
+        for(int i=1;i<s.length();i++){
+            dp[i]=dp[i-1];
+            dp[i]+=(s[i]=='1');
+        }
+    vector<int>dp1(s.length());
+    dp1[s.length()-1]=(s[s.length()-1]=='1');
+    for(int i=s.length()-2;i>=0;i--){
+        dp1[i]=dp1[i+1];
+        dp1[i]+=(s[i]=='1');
+    } map<long long int,long long int>hashing;
+    hashing[dp[0]]++;
+   long long int som=0;
+   
+    for(int i=1;i<(s.length()-1);i++){
+        if((dp[i]%2==0)and(dp[i]/2==dp1[i+1]))
+        som+=hashing[dp[i]/2]%1000000007;
+        hashing[dp[i]]++;
+
+    }
+    return som%1000000007;
+
+    }
+};
