@@ -1,0 +1,34 @@
+class Solution {
+  int minimalKSum(List<int> nums, int k) {
+      nums.sort();
+      int som=0;
+      var vis={};
+      int variable=0;
+      int var2=0;
+      bool test=false;
+      som+=(nums[0]-1);
+      if(som>k){
+          som-=(nums[0]-1);
+          variable= 1+(k-som-1); var2=-1;test=true;
+         
+      }
+      if(test==false){
+      for(int i=0;i<(nums.length-1);i++){
+          if(nums[i]==nums[i+1])continue;
+          som+=(nums[i+1]-nums[i]-1);
+          if(som>k){
+              som-=(nums[i+1]-nums[i]-1);
+              variable= nums[i]+(k-som); var2=i;test=true;  break;     }
+      }}
+     if(test==false){variable= nums[nums.length-1]+(k-som); var2=nums.length-1;}
+     
+    int res1=(variable*(variable+1))~/2;
+     for(int i=0;i<=var2;i++){
+         if(vis[nums[i]]==null){
+             res1-=nums[i];
+             vis[nums[i]]=1;
+         }
+     }
+return res1;
+  }
+}
