@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(),intervals.end());
+        int ans0=intervals[0][0];
+        int ans1=intervals[0][1];
+        vector<vector<int>>res;
+         for(int i=0;i<intervals.size();i++){
+            if(not((intervals[i][1]<ans0)or(ans1<intervals[i][0]))){
+                ans0=min(ans0,intervals[i][0]);
+                ans1=max(ans1,intervals[i][1]);
+            }
+            else{
+         
+                vector<int>var(2);
+                var[0]=ans0;
+                var[1]=ans1;
+                res.push_back(var);   
+            ans0=intervals[i][0];
+         ans1=intervals[i][1];
+            }
+        }
+    vector<int>var(2);
+                var[0]=ans0;
+                var[1]=ans1;
+                res.push_back(var);
+   
+    return res;
+    }
+};
