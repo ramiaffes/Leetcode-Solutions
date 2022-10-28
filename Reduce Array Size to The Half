@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minSetSize(vector<int>& arr) {
+        map<int,int>hashing;
+        for(int i=0;i<arr.size();i++){
+            hashing[arr[i]]++;
+        }
+    vector<int>vecp;
+    for(auto v:hashing){
+        vecp.push_back(hashing[v.first]);
+
+    }
+    sort(vecp.begin(),vecp.end());
+    int res=0;
+    for(int i=vecp.size()-1;i>=0;i--){
+        res+=vecp[i];
+        if(res>=(arr.size()/2+(arr.size()%2)))return vecp.size()-i;
+    }
+    return 0;
+    }
+};
