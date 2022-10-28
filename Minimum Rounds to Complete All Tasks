@@ -1,0 +1,30 @@
+class Solution {
+  int minimumRounds(List<int> tasks) {
+      var hashing={};
+      int som=0;
+      for(int i=0;i<tasks.length;i++){
+          if(hashing[tasks[i]]==null)hashing[tasks[i]]=1;
+          else hashing[tasks[i]]++;
+      }
+     var tasks1=tasks.toSet();
+     for(var key in tasks1){
+         int variable=0;
+         if(hashing[key] is int){variable=hashing[key];}
+         if(hashing[key]==1)return -1; 
+         else {
+             if(variable%3==0){
+                
+                 som+=variable~/3;
+             }
+             else if(variable%3==1){
+                 som+=variable~/3+1;
+             }
+            else{
+                
+                som+=variable~/3+1;
+            }
+         }
+     }
+return som;
+  }
+}
