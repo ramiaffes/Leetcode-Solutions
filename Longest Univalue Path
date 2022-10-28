@@ -1,0 +1,43 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+int ans=0;
+int dfs( TreeNode* u){
+    if(u==NULL){return 0;}
+    int som=0;
+    bool test2=false;
+    bool test3=false;
+   int som1= dfs(u->left);
+   int som2= dfs(u->right);
+    if(u->left!=NULL){
+    if(u->left->val==u->val){
+        test3=true;
+        som+=(som1+1);
+    }}
+   if(u->right!=NULL){
+    if(u->right->val==u->val){
+        test2=true;
+        som+=(som2+1);
+    }}
+    ans=max(ans,som);
+    if(test2 and test3){
+        return max(som1+1,som2+1);
+    }
+    return som;
+		}
+class Solution {
+public:
+    int longestUnivaluePath(TreeNode* root) {
+        ans=0;
+        dfs(root);
+        return ans;
+    }
+};
