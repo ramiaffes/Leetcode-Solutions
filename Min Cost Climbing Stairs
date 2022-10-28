@@ -1,0 +1,33 @@
+const int N=1000000;
+vector<int>dp(N);
+map<int,bool>vis;
+void func(int n,vector<int>& cost){
+    if(n==0)return;
+    if((n==1)){
+        dp[1]=cost[0];
+        
+        return;
+    }
+    else if(n==2){
+        dp[2]=cost[1];
+        
+    }
+    if(vis[n-1]==0){
+         func(n-1,cost);
+    }
+    if(vis[n-2]==0){
+        func(n-2,cost);
+    }
+    dp[n]=min(dp[n-2],dp[n-1])+cost[n-1];
+    vis[n]=1;
+    return ;
+}
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        dp.clear();
+        vis.clear();
+         func(cost.size(),cost);
+    return min(dp[cost.size()],dp[cost.size()-1]);
+    }
+};
