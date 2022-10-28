@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int addDigits(int num) {
+        int som1=num;
+        while(som1%10!=som1){
+        int som=som1;
+        som1=0;
+        while(som%10!=som){
+            som1+=som/10;
+            som=som%10;
+        }
+    som1+=som;
+    }return som1;}
+};
