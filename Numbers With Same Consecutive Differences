@@ -1,0 +1,40 @@
+set<string>res3;
+void myfonction(int n,int k,int n1,string res){
+    if(n==0){
+        res3.insert(res);return;
+    }
+    if(n==n1){
+        for(int i=1;i<10;i++){
+            string res1=res;
+            res1.append(to_string(i));
+            myfonction(n-1,k,n1,res1);
+        }
+    }
+    else{
+        int val2=res[res.length()-1]-'0'+k;
+        int val3=res[res.length()-1]-'0'-k;
+        if((val2>=0)and(val2<=9)){
+            string res1=res;
+            res1.append(to_string(val2));
+             myfonction(n-1,k,n1,res1);
+        }
+         if((val3>=0)and(val3<=9)and(val3!=val2)){
+            string res1=res;
+            res1.append(to_string(val3));
+             myfonction(n-1,k,n1,res1);
+        }
+    }
+    
+}
+class Solution {
+public:
+    vector<int> numsSameConsecDiff(int n, int k) {
+        res3.clear();
+        myfonction(n,k,n,"");
+        vector<int>res4;
+        for(auto v:res3){
+            res4.push_back(stoi(v));
+        }
+    return res4;
+    }
+};
