@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        long long int var=start^goal;
+        long long int som=0;
+        while(var!=0){
+            if(var%2==1){
+                som++;
+            }
+            var/=2;
+        }
+    return som;
+    }
+};
