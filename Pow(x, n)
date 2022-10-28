@@ -1,0 +1,49 @@
+class Solution {
+  double myPow(double x, int n) { 
+      if(n==0)return 1.0;
+      double p=1.0;
+      if(n>0){
+      int i=1;
+      while(((i*(i+1))~/2)<=n){
+          i++;
+      }
+      i--;
+     double valeur1=x;
+      List<double>vect=[];
+      int varia=0;
+      
+     while(varia<i){
+         p*=valeur1;
+         vect.add(valeur1);
+         valeur1*=x;
+         
+         varia++;
+     }
+          if(n>((i*(i+1))~/2))
+       p*=vect[n-((i*(i+1))~/2)-1];}
+      else{
+          int i=1;
+         n=-n;
+      while(((i*(i+1))~/2)<=n){
+          i++;
+      }
+      i--;
+     double valeur1=1/x;
+      List<double>vect=[];
+      int varia=0;
+      
+     while(varia<i){
+         p*=valeur1;
+         vect.add(valeur1);
+         valeur1*=(1/x);
+         
+         varia++;
+     }
+    if(n>((i*(i+1))~/2)){
+    p*=vect[n-((i*(i+1))~/2)-1];
+   }
+      }
+     return p;
+
+  }
+}
