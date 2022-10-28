@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> getMaximumXor(vector<int>& nums, int maximumBit) {
+    vector<int>res(nums.size());
+int res1=0;vector<int>dp(nums.size());
+dp[0]=nums[0];
+
+for(int i=1;i<nums.size();i++){
+    dp[i]=dp[i-1];
+   dp[i]^=nums[i];
+}
+for(int i=0;i<nums.size();i++){
+    res1=dp[nums.size()-i-1];
+    int res2=res1;
+    vector<int>res3;
+    while(res2!=0){
+        res3.push_back(res2%2);
+        res2/=2;
+    }
+while(res3.size()<maximumBit){
+    res3.push_back(0);
+}
+int p=1;
+int res4=0;
+for(int j=0;j<(maximumBit);j++){
+    if(res3[j]==0)
+    res4+=p;
+    p*=2;
+}
+    res[i]=res4;
+    
+}
+return res;
+    }
+};
