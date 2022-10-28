@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+    sort(nums.begin(),nums.end());
+    long long int n=nums.size();
+    vector<long long int>dp(n);
+        vector<long long int>dp1(n);
+    dp[0]=0;
+    for(long long int i(1);i<n;i++){
+        dp[i]=dp[i-1];
+        dp[i]+=i*(nums[i]-nums[i-1]);
+    }
+    dp1[n-1]=0;
+    for(long long int i(n-2);i>=0;i--){
+        dp1[i]=dp1[i+1];
+        dp1[i]+=(n-i-1)*(nums[i+1]-nums[i]);
+    }
+    long long int ans=10000000000;
+    for(long long int i(0);i<n;i++){
+        ans=min(ans,(dp1[i]+dp[i]));
+    }
+    return ans;
+    
+    }
+};
