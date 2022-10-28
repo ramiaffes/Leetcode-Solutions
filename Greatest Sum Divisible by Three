@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int maxSumDivThree(vector<int>& nums) {
+        map<int,vector<int>>hashing;
+        for(int i=0;i<nums.size();i++){
+            hashing[nums[i]%3].push_back(nums[i]);
+        }
+    if(not(hashing[0].empty()))
+    sort(hashing[0].begin(),hashing[0].end());
+    if(not(hashing[1].empty()))
+    sort(hashing[1].begin(),hashing[1].end());
+    if(not(hashing[2].empty()))
+    sort(hashing[2].begin(),hashing[2].end());
+    if(not(hashing[0].empty()))
+    reverse(hashing[0].begin(),hashing[0].end());
+    if(not(hashing[1].empty()))
+    reverse(hashing[1].begin(),hashing[1].end());
+    if(not(hashing[2].empty()))
+    reverse(hashing[2].begin(),hashing[2].end());
+    int som1=0;
+    int val0=hashing[0].size();
+    int val1=hashing[1].size();
+    int val2=hashing[2].size();
+    int ans=0;
+    for(int d=0;d<=2;d++){
+        for(int d1=0;d1<=2;d1++){
+    for(int i=0;i<min(val1-d,val2-d1);i++){
+        som1+=hashing[2][i];
+        som1+=hashing[1][i];
+    }
+    
+if(min(val1-d,val2-d1)>=0){
+for(int i=min(val1-d,val2-d1);i<(val1-(val1-(min(val1-d,val2-d1)))%3);i++){
+som1+=hashing[1][i];
+}
+ for(int i=min(val1-d,val2-d1);i<(val2-((val2-(min(val1-d,val2-d1)))%3));i++){
+     
+        som1+=hashing[2][i];
+    }}
+    ans=max(ans,som1);som1=0;}}
+int som=0;
+for(int i(0);i<val0;i++){
+    som+=hashing[0][i];
+}
+
+return ans+som;
+    }
+};
