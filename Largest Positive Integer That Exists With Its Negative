@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int findMaxK(vector<int>& nums) {
+        map<int,bool>vis;
+        int ans=-1;
+        for(int i=0;i<nums.size();i++){
+            vis[nums[i]]=1;
+            if(vis[-nums[i]]==1)ans=max(ans,abs(nums[i]));
+        }
+        return ans;
+    }
+};
