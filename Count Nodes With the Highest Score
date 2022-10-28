@@ -1,0 +1,48 @@
+map<long long int,long long int>dp;
+map<long long int,vector<long long int>>adj;
+long long int p=1;
+long long int ans=-1;
+long long int som=0;
+long long int som33=1;
+void dfs(long long int u,long long int n){
+    dp[u]=1;
+   if(adj[u].empty()){p=n-1;if(p>ans){
+    som=1;
+    ans=p;
+}
+else if(p==ans){
+    som++;
+}
+   return;}
+	for(auto v:adj[u]){
+		dfs(v,n);
+        dp[u]+=dp[v];}p=1;
+    som33=1;
+    for(auto v:adj[u]){
+    p*=dp[v];
+    som33+=dp[v];}
+    if(n!=som33)
+    p*=(n-som33);
+if(p>ans){
+    som=1;
+    ans=p;
+}
+else if(p==ans){
+    som++;
+}}
+class Solution {
+public:
+    int countHighestScoreNodes(vector<int>& parents) {
+        dp.clear();
+        adj.clear();
+        p=1;
+        ans=0;
+        som=0;
+        for(int i=0;i<parents.size();i++){
+            if(parents[i]!=-1)
+            adj[parents[i]].push_back(i);
+        }
+    dfs(0,parents.size());
+    
+    return som;}
+};
