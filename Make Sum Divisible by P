@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int minSubarray(vector<int>& nums, int p) {
+        long long int som=0;
+        map<int,int>dp;
+        for(int i=0;i<nums.size();i++){som+=nums[i];}
+        int val=som%p;
+        som=0;
+        int ans=1e6;
+        for(int i=0;i<nums.size();i++){
+            som+=nums[i];
+            dp[som%p]=i+1;
+            if(som%p==val){
+                ans=min(ans,i+1);
+            }
+            if((-val+som%p)<0){
+                if(dp[(-val+som%p+p)%p]!=0){
+                    ans=min(ans,i+1-dp[(-val+som%p+p)%p]);
+                }
+            }
+        else{
+             if(dp[(-val+som%p)]!=0){
+                    ans=min(ans,i+1-dp[(-val+som%p)]);
+                }
+        }
+            
+        }
+    if((ans==1e6)or(ans==nums.size()))return -1;
+    return ans;
+    }
+};
