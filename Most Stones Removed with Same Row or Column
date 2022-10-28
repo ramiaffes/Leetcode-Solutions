@@ -1,0 +1,41 @@
+map<pair<int, int> ,pair<int, int> > parent;
+void make_set(pair<int, int>  v) {
+    parent[v] = v;
+}
+ pair<int, int>  find_set(pair<int, int>  v) {
+    if (v == parent[v])
+        return v;
+    return(find_set(parent[v]));
+}
+ 
+void union_sets(pair<int, int> a, pair<int, int>  b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b){
+        parent[b] = a;
+    }
+}
+class Solution {
+public:
+    int removeStones(vector<vector<int>>& stones) {
+    parent.clear();
+        for(int i=0;i<stones.size();i++){
+            make_set(make_pair(stones[i][0],-1));
+            make_set(make_pair(-1,stones[i][1]));
+             make_set(make_pair(stones[i][0],stones[i][1]));
+        }
+        for(int i=0;i<stones.size();i++){
+        union_sets(make_pair(stones[i][0],stones[i][1]),make_pair(stones[i][0],-1));
+        union_sets(make_pair(stones[i][0],stones[i][1]),make_pair(-1,stones[i][1]));
+          }
+        int som=0;
+        for(int i=0;i<stones.size();i++){
+           
+            if(parent[make_pair(stones[i][0],stones[i][1])]==make_pair(stones[i][0],stones[i][1])){
+                
+                som++;
+            }
+        }
+        return stones.size()-som;
+    }
+};
