@@ -1,0 +1,50 @@
+
+class MyHashSet {
+public:
+    MyHashSet() {
+        
+    }
+    ListNode * head=NULL;
+    void add(int key) {
+         ListNode * valeur=new ListNode();
+        valeur->val=key;
+        if(head==NULL){head=valeur;}
+        else{ListNode * curr=head;
+             while(curr->next!=NULL){
+                if(curr->val==key)break;
+             curr=curr->next;}
+             if(curr->next==NULL){
+                 if(curr->val!=key)
+            curr->next=valeur;}}
+    }
+    
+    void remove(int key) {
+        ListNode * curr=head;
+        if(curr==NULL)return ;
+        if(curr->val==key){head=head->next;return;}
+        while((curr->next!=NULL)and(curr->next->val!=key)){
+            curr=curr->next;
+        }
+        if(curr->next!=NULL){
+            curr->next=curr->next->next;
+        }
+    }
+    
+    bool contains(int key) {
+        ListNode * curr=head;
+         if(curr==NULL)return false;
+        if(curr->val==key){return true;}
+        while((curr->next!=NULL)and(curr->next->val!=key)){
+            curr=curr->next;
+        }
+    return (curr->next!=NULL);
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
