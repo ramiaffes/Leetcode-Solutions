@@ -1,0 +1,35 @@
+map<pair<long long int,long long int>,vector<pair<long long int,long long int>>>adj;
+map<pair<long long int,long long int>,bool>vis;
+map<pair<long long int,long long int>,long long int>dp;
+void dfs(pair<long long int,long long int>u,vector<vector<int>>& grid){
+	if(adj[u].empty()){dp[u]=grid[u.first][u.second];return;}
+    dp[u]=1e9;
+	for(auto v:adj[u]){
+         if(dp[v]!=0){
+            dp[u]=min(dp[u],dp[v]+grid[u.first][u.second]);
+        }
+        else{
+		dfs(v,grid);
+        dp[u]=min(dp[u],dp[v]+grid[u.first][u.second]);}
+        }}
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        adj.clear();
+        dp.clear();
+        int n=grid.size();
+        int m=grid[0].size();
+        for(long long int i(0);i<n;i++){
+            for(long long int j(0);j<(m-1);j++){
+                adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+            }
+        } 
+        for(long long int j(0);j<(m);j++){
+         for(long long int i(0);i<(n-1);i++){
+                adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+            }
+        }
+        dfs(make_pair(0,0),grid); 
+        return dp[make_pair(0,0)];
+    }
+};
