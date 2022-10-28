@@ -1,0 +1,47 @@
+map<pair<int,int>,vector<pair<int,int>>>adj;
+map<pair<int,int>,bool>vis1;
+map<char,bool>vis2;
+bool test=true;
+map<pair< int, int>,pair< int, int>>parent;
+void dfs1(pair< int, int>u,vector<vector<char>>& grid,pair< int, int>ans){
+    if(test==false)return;
+	if(vis1[u]==1){test=false;return;}
+	vis1[u]=1; 
+    if(adj[u].empty())return;
+	for(auto v:adj[u]){
+        if(v==parent[u]){continue;}
+        parent[v]=u;
+		dfs1(v,grid,ans);}}
+class Solution {
+public:
+    bool containsCycle(vector<vector<char>>& grid) {
+        test=true;
+         int n= grid.size();
+         int m=grid[0].size();
+        adj.clear();
+        vis1.clear();
+        parent.clear();
+        for(long long int i(0);i<n;i++){
+            for(long long int j(0);j<(m-1);j++){
+                if(grid[i][j]==grid[i][j+1]){
+                adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                adj[make_pair(i,j+1)].push_back(make_pair(i,j));}
+            }
+        }
+          for(long long int i(0);i<m;i++){
+            for(long long int j(0);j<(n-1);j++){
+                if(grid[j][i]==grid[j+1][i]){
+                adj[make_pair(j,i)].push_back(make_pair(j+1,i));
+                adj[make_pair(j+1,i)].push_back(make_pair(j,i));}
+            }
+        }
+   for(long long int i(0);i<n;i++){
+            for(long long int j(0);j<(m);j++){
+                if(vis1[make_pair(i,j)]==0){
+                    dfs1(make_pair(i,j),grid,make_pair(i,j));
+                    if(test==false){return true;}
+                }
+            }}
+    return false;
+    }
+};
