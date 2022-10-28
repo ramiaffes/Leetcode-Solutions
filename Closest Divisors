@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> closestDivisors(int num) {
+        map<int,vector<pair<int,int>>>hashing;
+        for(int i=1;i*i<=(num+1);i++){
+            if((num+1)%i==0){
+hashing[abs(i-(num+1)/i)].push_back(make_pair(i,(num+1)/i));
+
+            }
+        }
+      for(int i=1;i*i<=(num+2);i++){
+            if((num+2)%i==0){
+hashing[abs(i-(num+2)/i)].push_back(make_pair(i,(num+2)/i));
+
+            }
+        } 
+        vector<int>res;
+    for(auto v:hashing){
+       
+        res.push_back(hashing[v.first][0].first);
+        res.push_back(hashing[v.first][0].second);
+        return res;
+    }
+    return res;
+    }
+};
