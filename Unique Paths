@@ -1,0 +1,33 @@
+map<pair<long long int,long long int>,vector<pair<long long int,long long int>>>adj;
+map<pair<long long int,long long int>,bool>vis;
+long long int som=0;
+map<pair<long long int,long long int>,long long int>dp;
+void dfs(pair<long long int,long long int>u){
+	if(adj[u].empty()){dp[u]=1;return;}
+	for(auto v:adj[u]){
+        if(dp[v]!=0){
+            dp[u]+=dp[v];
+        }
+        else{
+		dfs(v);
+        dp[u]+=dp[v];}}}
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        adj.clear();
+        dp.clear();
+        som=0;
+        for(long long int i(0);i<n;i++){
+            for(long long int j(0);j<(m-1);j++){
+                adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+            }
+        } 
+        for(long long int j(0);j<(m);j++){
+         for(long long int i(0);i<(n-1);i++){
+                adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+            }
+        }
+        dfs(make_pair(0,0));
+    return dp[make_pair(0,0)];
+    }
+};
