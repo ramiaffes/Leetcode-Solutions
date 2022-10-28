@@ -1,0 +1,40 @@
+map<int,bool>vis;
+map<int,int>lev;
+bool test=true;
+map<int,vector<int>>adj;
+void dfs( int u){
+    if(vis[u]==1){test=false;return;}
+    vis[u]=1;
+
+	for(auto v:adj[u]){
+		dfs(v);}
+}
+class Solution {
+public:
+    bool validateBinaryTreeNodes(int n, vector<int>& leftChild, vector<int>& rightChild) {
+        map<int,bool>vis1;
+        adj.clear();
+        vis.clear();
+        test=true;
+        for(int i=0;i<n;i++){
+            if(leftChild[i]!=-1)
+            adj[i].push_back(leftChild[i]);
+            if(rightChild[i]!=-1)
+            adj[i].push_back(rightChild[i]);
+            vis1[leftChild[i]]=1;
+            vis1[rightChild[i]]=1;
+        }
+    for(int i=0;i<n;i++){
+        if(vis1[i]==0){
+            dfs(i);
+            break;
+        }
+    }
+    if(test==false)return false;
+     for(int i=0;i<n;i++){
+         if(vis[i]==0)return false;
+     }   
+        return true;
+    
+    }
+};
