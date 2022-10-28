@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+        vector<vector<int>>res1(nums.size());
+        for(int i=0;i<nums.size();i++){
+            int val=nums[i];
+            while(val!=0){
+                res1[i].push_back(val%2);
+                val/=2;
+            }
+        }
+    int ans=0;
+    for(int i=0;i<nums.size();i++){
+         int nu=res1[i].size();
+        ans=max(ans,nu);
+    }
+    for(int i=0;i<nums.size();i++){
+        while(res1[i].size()<ans){
+            res1[i].push_back(0);
+        }
+    }
+        vector<pair<int,int>>res(ans);
+        for(int i=0;i<res1.size();i++){
+            for(int j=0;j<ans;j++){
+            if(res1[i][j]==0){
+                res[j].first++;
+            }
+            else res[j].second++;}
+        }
+    int som1=0;
+        for(int i=0;i<ans;i++){
+            som1+=res[i].first*res[i].second;
+        }
+    return som1;
+    }
+};
