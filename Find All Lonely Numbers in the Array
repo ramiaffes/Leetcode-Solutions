@@ -1,0 +1,18 @@
+class Solution {
+  List<int> findLonely(List<int> nums) {
+var hashing={};
+List<int>res=[];
+for(int i=0;i<nums.length;i++){
+    if(hashing[nums[i]]==null)hashing[nums[i]]=1;
+   else hashing[nums[i]]++;
+}
+     var set1=nums.toSet();
+      for(var key in set1){
+          if((hashing[key]==1)&&((hashing[key-1])==null)&&((hashing[key+1])==null)){
+              if(key is int)
+              res.add(key);
+          }
+      }
+return res;
+  }
+}
