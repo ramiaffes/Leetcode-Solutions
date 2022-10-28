@@ -1,0 +1,54 @@
+void tokenize(string const &str, const char delim,
+            vector<string> &out)
+{
+    size_t start;
+    size_t end = 0;
+ 
+    while ((start = str.find_first_not_of(delim, end)) != std::string::npos)
+    {
+        end = str.find(delim, start);
+        out.push_back(str.substr(start, end - start));
+    }
+}
+class Solution {
+public:
+    bool isValidSerialization(string preorder) {
+
+       stack<int>st;
+        bool test=true;
+        bool test1=false;
+        long long int i=0;
+        vector<string>preorder1;
+        tokenize(preorder,',',preorder1);
+        while(i<preorder1.size()){
+         if(st.empty()){
+             if(test1==false){
+             if(preorder1[i]!="#")
+                st.push(i);}
+             else {test=false;break;}
+             i++;
+             test1=true;
+              
+            }
+            else{
+                if(i<(preorder1.size()-1)){
+                    st.pop();
+                    if(preorder1[i]!="#")
+                    st.push(i);
+                    if(preorder1[i+1]!="#")
+                    st.push(i+1);
+                    i+=2;
+                }
+            else{ if(preorder1[i]!="#")
+                    st.push(i);
+                i++;
+                 
+                 
+                }
+            }
+      }
+    if(st.empty()==false){test=false;}
+    return test;
+        
+    }
+};
