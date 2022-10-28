@@ -1,0 +1,11 @@
+class Solution {
+public:
+    
+    bool findSubarrays(vector<int>& nums) {map<int,bool>vis;
+        for(int i=0;i<(nums.size()-1);i++){
+            if(vis[nums[i]+nums[i+1]]==1)return true;
+            vis[nums[i]+nums[i+1]]=1;
+        }
+    return false;
+    }
+};
