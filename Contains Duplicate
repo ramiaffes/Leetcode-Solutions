@@ -1,0 +1,12 @@
+class Solution {
+  bool containsDuplicate(List<int> nums) {
+      var vis={};
+      for(int i=0;i<nums.length;i++){
+          if(vis.containsKey(nums[i])==false){
+              vis[nums[i]]=1;
+          }
+         else return true;
+      }
+    return false;
+  }
+}
