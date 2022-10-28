@@ -1,0 +1,14 @@
+class Solution {
+public:
+    double nthPersonGetsNthSeat(int n) {
+    double var=1;
+    double var1=1;
+   double p=var1/n;
+    for(long long int i(0);i<(n-1);i++){
+        double valeur=i;
+        var-=(p);
+        p=(var1/(n-i-1))*(var1/(n-i));
+    }
+    return var;
+    }
+};
