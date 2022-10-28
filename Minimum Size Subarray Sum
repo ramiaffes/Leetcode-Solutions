@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+      vector<long long int>dp(nums.size());
+        dp[0]+=nums[0];
+        for(int i(1);i<nums.size();i++){
+            dp[i]=dp[i-1];
+            dp[i]+=nums[i];
+        }
+    long long int som=0;
+    long long int ans=1e6;
+    for(int i(0);i<nums.size();i++){
+        som=target;
+        if(i>=1){
+        som+=dp[i-1];}
+    auto it=lower_bound(dp.begin(),dp.end(),som);
+    if(it==dp.end())continue;
+    long long int val=it-dp.begin()-i+1;
+    ans=min(ans,val);
+    
+        
+    }
+    if(ans==1e6)ans=0;
+    return ans;}
+};
