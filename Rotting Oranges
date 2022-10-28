@@ -1,0 +1,82 @@
+map<pair<int, int>,vector<pair<int,int>>>adj;
+map<pair<int, int>,bool>vis;
+map<pair<int,int> , int> dist;
+long long int som=0;
+void bfs(pair<int, int> src){
+	dist[src]=0;
+	queue<pair<int,int>>q;
+	q.push(src);
+	while(!q.empty()){
+		pair<int,int> u=q.front();
+		q.pop();
+		if(vis[u])continue;
+		vis[u]=1;
+		for(auto v:adj[u]){
+			if(vis[v])continue;
+			dist[v]=min(dist[v],(dist[u]+1));
+			q.push(v);}
+		}}
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        vector<pair<int,int>>res;
+        dist.clear();
+        vis.clear();
+        adj.clear();
+        int n=grid.size();
+        int m=grid[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==2){
+                    res.push_back(make_pair(i,j));
+                }
+            }
+        }
+    for(int i=0;i<n;i++){
+            for(int j=0;j<(m-1);j++){
+                if((grid[i][j]!=0)and(grid[i][j+1]!=0)){
+                    adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                    adj[make_pair(i,j+1)].push_back(make_pair(i,j));
+                }
+            }}
+        for(int j=0;j<(m);j++){
+      for(int i=0;i<(n-1);i++){
+            
+                if((grid[i][j]!=0)and(grid[i+1][j]!=0)){
+                    adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+                    adj[make_pair(i+1,j)].push_back(make_pair(i,j));
+                }
+            }}
+    map<pair<int,int>,int>dist1;
+   for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                dist1[make_pair(i,j)]=1e9;
+            }}
+    for(auto v:res){
+         for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                dist[make_pair(i,j)]=1e9;
+            }}
+        bfs(v);
+        vis.clear();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                dist1[make_pair(i,j)]=min(dist1[make_pair(i,j)],dist[make_pair(i,j)]);
+                
+            }}
+    }
+        int ans=0;
+     for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if((dist1[make_pair(i,j)]==1e9)and(grid[i][j]!=0)){
+                    return -1;
+                }
+            if(grid[i][j]!=0)
+            ans=max(ans,dist1[make_pair(i,j)]);
+            }}
+    return ans;
+        
+    
+
+    }
+};
