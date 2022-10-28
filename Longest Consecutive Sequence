@@ -1,0 +1,30 @@
+import 'dart:math';
+class Solution {
+  int longestConsecutive(List<int> nums) {
+     
+      if(nums.length==0) { return 0;}
+      var myset=[].toSet();
+      for(int i=0;i<nums.length;i++){
+          myset.add(nums[i]);
+      }
+     int ans=1;
+      int som=1;
+     var mylist=myset.toList();
+      mylist.sort();
+     for(int i=1;i< mylist.length;i++){
+         if( mylist[i]==( mylist[i-1]+1)){
+             som++;
+         }
+         else{
+             if(ans<som){
+                 ans=som;
+             }
+             som=1;
+         }
+     }
+     if(ans<som){
+                 ans=som;
+             }
+    return ans;
+  }
+}
