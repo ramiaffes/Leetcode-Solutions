@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        if(left==right) return left;
+        vector<int>res1;
+        vector<int>res2;
+       while(left!=0){
+           res1.push_back(left%2);
+           left/=2;
+       }
+         while(right!=0){
+           res2.push_back(right%2);
+           right/=2;
+       }
+    while(res1.size()<res2.size()){
+        res1.push_back(0);
+    }
+    reverse(res1.begin(),res1.end());
+    reverse(res2.begin(),res2.end());
+    vector<int>res3;
+    for(int i(0);i<res1.size();i++){
+    if((res1[i]==res2[i])and(res1[i]==1)){
+    res3.push_back(1);
+    }
+    else if (res1[i]==res2[i]){
+        res3.push_back(0);
+    }
+    else break;}
+    while(res3.size()<res1.size()){
+        res3.push_back(0);
+        
+    }
+    long long int res4=0;
+    long long int p=1;
+    for(int i(res3.size()-1);i>=0;i--){
+    if(res3[i]==1)
+        res4+=p;
+        p*=2;
+    }
+    return res4;
+    }
+};
