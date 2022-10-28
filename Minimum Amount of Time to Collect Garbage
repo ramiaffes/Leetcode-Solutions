@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int garbageCollection(vector<string>& garbage, vector<int>& travel) {
+        map<char,int>hashing;
+        int val=-1;
+        int val1=-1;
+        int val2=-1;
+        bool test=true;
+        bool test1=true;
+        bool test2=true;
+        for(int i=garbage.size()-1;i>=0;i--){
+            for(int j=0;j<garbage[i].length();j++){
+            hashing[garbage[i][j]]++;
+                if((garbage[i][j]=='P')and(test==true)){
+                    val=i;
+                    test=false;
+                }
+                if((garbage[i][j]=='M')and(test1==true)){
+                    val1=i;
+                    test1=false;
+                }
+              if((garbage[i][j]=='G')and(test2==true)){
+                    val2=i;
+                    test2=false;
+                }
+            }
+            
+
+        }
+  
+    vector<int>dp(garbage.size());
+    dp[0]=0;
+    for(int i=1;i<(garbage.size());i++){
+        dp[i]=dp[i-1];
+        dp[i]+=travel[i-1];
+    }
+        
+    int som=0;
+    if(val!=-1)som+=dp[val];
+    if(val1!=-1)som+=dp[val1];
+    if(val2!=-1)som+=dp[val2];
+    return(som+hashing['G']+hashing['P']+hashing['M']);
+    }
+};
