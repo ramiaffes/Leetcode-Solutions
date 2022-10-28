@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        set<string>se;
+        map<string,bool>vis;   string res;
+    for (int j(0);j<(10);j++){
+                string val(1,s[j]);
+                res.append(val);
+            } 
+    vector<string>vect1;
+    if(s.length()<10)return vect1;
+        for(int i(0);i<=(s.length()-10);i++){
+        if(vis[res]){
+            se.insert(res);
+        }
+        vis[res]=1;
+        if((i+10)>=s.length())break;
+         string val(1,s[i+10]); 
+        res.erase(0,1);  
+        res.append(val);
+        
+        }
+   
+    if(se.empty())return vect1  ;
+    vector<string>vect(se.begin(),se.end());
+        return vect;
+    }
+};
