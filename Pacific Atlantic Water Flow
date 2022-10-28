@@ -1,0 +1,76 @@
+map<pair<int,int>,vector<pair<int,int>>>adj;
+map<pair<int,int>,bool>vis1;
+map<pair<int,int>,bool>vis2;
+void dfs1(pair<long long int,long long int>u){
+	if(vis1[u]==1)return;
+	vis1[u]=1;
+	for(auto v:adj[u]){
+		if(vis1[v]){
+			continue;}
+		dfs1(v);}}
+void dfs2(pair<long long int,long long int>u){
+	if(vis2[u]==1)return;
+	vis2[u]=1;
+	for(auto v:adj[u]){
+		if(vis2[v]){
+			continue;}
+		dfs2(v);}}
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        adj.clear();
+        vis1.clear();
+        vis2.clear();
+        
+    vector<vector<int>>res;
+     long long int n=heights.size();
+    long long int m=heights[0].size();
+        for(long long int i(0);i<n;i++){
+            for(long long int j(0);j<(m-1);j++){
+                if(heights[i][j]<heights[i][j+1])
+                adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                else if(heights[i][j]==heights[i][j+1]){
+                    adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                    adj[make_pair(i,j+1)].push_back(make_pair(i,j));
+                }
+            else adj[make_pair(i,j+1)].push_back(make_pair(i,j));
+            }
+        }
+    for(long long int j(0);j<m;j++){
+        for(long long int i(0);i<(n-1);i++){
+             if(heights[i][j]<heights[i+1][j])
+                adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+                else if(heights[i][j]==heights[i+1][j]){
+                    adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+                    adj[make_pair(i+1,j)].push_back(make_pair(i,j));
+                }
+            else adj[make_pair(i+1,j)].push_back(make_pair(i,j));
+        }
+    }
+     for(long long int i(0);i<n;i++){
+         if(vis1[make_pair(i,0)]==0)dfs1(make_pair(i,0));  
+            }
+       for(long long int i(0);i<m;i++){
+         if(vis1[make_pair(0,i)]==0)dfs1(make_pair(0,i));  
+            }
+     for(long long int i(0);i<n;i++){
+         if(vis2[make_pair(i,m-1)]==0)dfs2(make_pair(i,m-1));  
+            }
+       for(long long int i(0);i<m;i++){
+         if(vis2[make_pair(n-1,i)]==0)dfs2(make_pair(n-1,i));  
+            }
+    for(long long int i(0);i<n;i++){
+        for(long long int j(0);j<m;j++){
+            if((vis1[make_pair(i,j)]==1)and(vis2[make_pair(i,j)]==1)){
+                vector<int>vect2(2);
+                vect2[0]=i;
+                vect2[1]=j;
+                res.push_back(vect2);
+            }
+        }
+    }
+    return res;
+    
+    
+    }
+};
