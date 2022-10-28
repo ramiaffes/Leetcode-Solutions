@@ -1,0 +1,65 @@
+map<pair<int, int>,vector<pair<int,int>>>adj;
+map<pair<int, int>,bool>vis;
+map<pair<int,int> ,long long int> dist;
+long long int som=0;
+void bfs(pair<int, int> src){
+	dist[src]=0;
+	queue<pair<int,int>>q;
+	q.push(src);
+	while(!q.empty()){
+		pair<int,int> u=q.front();
+		q.pop();
+		if(vis[u])continue;
+		vis[u]=1;
+		for(auto v:adj[u]){
+			if(vis[v])continue;
+			dist[v]=min(dist[v],(dist[u]+1));
+			q.push(v);}
+		}}
+class Solution {
+public:
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        adj.clear();
+        dist.clear();
+        vis.clear();
+        int n=maze.size();
+        int m=maze[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                dist[make_pair(i,j)]=1e9;
+            }
+        }
+        long long int ans=1e9;
+         for(int i=0;i<maze.size();i++){
+           for(int j=0;j<(maze[i].size()-1);j++){
+               if((maze[i][j]=='.')and(maze[i][j+1]=='.')){
+                   adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                   adj[make_pair(i,j+1)].push_back(make_pair(i,j));
+               }
+           }}
+        for(int j=0;j<m;j++){
+           for(int i=0;i<(maze.size()-1);i++){
+               if((maze[i][j]=='.')and(maze[i+1][j]=='.')){
+                   adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+                   adj[make_pair(i+1,j)].push_back(make_pair(i,j));
+               }
+           }}
+        bfs(make_pair(entrance[0],entrance[1]));
+        vis[make_pair(entrance[0],entrance[1])]=0;
+        for(int i=0;i<maze.size();i++){
+            if(vis[make_pair(i,m-1)]==1)
+            ans=min(ans,dist[make_pair(i,m-1)]);
+            if(vis[make_pair(i,0)]==1)
+            ans=min(ans,dist[make_pair(i,0)]);
+        }
+          for(int i=0;i<m;i++){
+             if(vis[make_pair(0,i)]==1)
+            ans=min(ans,dist[make_pair(0,i)]);
+              if(vis[make_pair(n-1,i)]==1)
+            ans=min(ans,dist[make_pair(n-1,i)]);
+        }
+    if(ans==1e9)return -1;
+    return ans;
+        
+    }
+};
