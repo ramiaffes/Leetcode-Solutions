@@ -1,0 +1,30 @@
+#define  fast ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+class Solution {
+public:
+    int wordCount(vector<string>& startWords, vector<string>& targetWords) {
+        fast;
+        map<string,long long int>hashing;
+         map<string,bool>vis;
+        for (long long int i(0);i<startWords.size();i++){
+            sort(startWords[i].begin(),startWords[i].end());
+        vis[startWords[i]]=1;}
+    for (long long int i(0);i<targetWords.size();i++){
+            sort(targetWords[i].begin(),targetWords[i].end());
+    hashing[targetWords[i]]++;}
+    long long int som1=0;
+    for(auto v:hashing){
+        for (long long int i(0);i<v.first.length();i++){
+            string v1=v.first;
+            v1.erase(i,1);
+            if(vis[v1]){som1+=hashing[v.first];break;}
+            
+        }
+    }
+    return som1;
+        
+    
+            
+    
+    
+    }
+};
