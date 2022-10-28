@@ -1,0 +1,19 @@
+import "dart:collection";
+class Solution {
+  List<List<String>> groupAnagrams(List<String> strs) {
+      var map={};
+      for(int i=0;i<strs.length;i++){
+          var lis=strs[i].split("");
+          lis.sort();
+          var str=lis.join(',');
+         if(map[str]==null) map[str]=[strs[i]];
+         else map[str].add(strs[i]);
+      }
+List<List<String>>res=[];
+for( var valeur in map.values){
+    if(valeur is List<String>)
+    res.add(valeur);
+}
+return res ;
+  }
+}
