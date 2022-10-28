@@ -1,0 +1,42 @@
+const int N=10000;
+map<long long int,vector<long long int>>adj;
+map<long long int,vector<long long int>>adj2;
+map<long long int,bool>vis;
+ vector<set< int>>res1(N);
+set<int>res;
+void dfs1(long long int u){
+    vis[u]=1;
+    if(adj[u].empty()){res1[u]=res;return;}
+	for(auto v:adj[u]){
+        if(vis[v]){
+        }
+        else{
+		dfs1(v);}}
+for(auto v:adj[u]){
+    res1[u].insert(v);
+for(auto v1:res1[v])
+res1[u].insert(v1);}
+}
+class Solution {
+public:
+    vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+      vis.clear();
+        res.clear();
+        res1.clear();
+        adj.clear();
+        res1.resize(n);
+        for(int i=0;i<edges.size();i++){
+            adj[edges[i][1]].push_back(edges[i][0]);
+        }
+    for(int i=0;i<n;i++){
+        if(vis[i]==0)dfs1(i);
+    }
+        vector<vector<int>>res2(n);
+        for(int i=0;i<res1.size();i++){
+            vector<int>vect(res1[i].begin(),res1[i].end());
+            res2[i]=vect;
+        }
+    return res2;
+    
+    }
+};
