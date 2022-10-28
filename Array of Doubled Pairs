@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool canReorderDoubled(vector<int>& arr) {
+        map<int,int>hashing;
+        set<int>se;
+        for(int i=0;i<arr.size();i++){
+            hashing[arr[i]]++;
+            se.insert(arr[i]);
+        }
+    for(auto v:se){
+        if(v>0){
+        int ans=min(hashing[v],hashing[2*v]);
+        hashing[v]-=ans;
+        hashing[2*v]-=ans;}
+        else if(v==0){
+            if(v%2==1)return false;
+            hashing[v]=0;
+            
+        }
+        else if(v%2==0){
+            int ans=min(hashing[v],hashing[v/2]);
+        hashing[v]-=ans;
+        hashing[v/2]-=ans;
+        }
+        if(hashing[v]>0)return false;
+    }
+         for(auto v:se){
+             if(hashing[v]!=0)return false;
+         }
+     return true;   
+    }
+};
