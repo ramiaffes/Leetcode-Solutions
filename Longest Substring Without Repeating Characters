@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int j=0;
+        int i=0;
+        int ans=0;
+        int som=0;
+        map<char,int>hashing;
+        while(j<s.length()){
+            hashing[s[j]]++;
+            if(hashing[s[j]]==2){
+            som++;}
+            while((i<=j)and(som!=0)){
+                hashing[s[i]]--;
+                if(hashing[s[i]]==1)som--; i++;
+            }
+        if(i>j){j++;continue;}
+        
+        ans=max(ans,j-i+1);
+            j++;
+        }
+    return ans;
+    }
+};
