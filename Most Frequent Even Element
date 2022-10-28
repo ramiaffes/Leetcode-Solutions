@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums) {
+        map<int,int>hashing;
+        int ans=0;
+        for(int i=0;i<nums.size();i++){hashing[nums[i]]++;}
+        for(auto v:hashing){
+            if(v.first%2==0)
+            ans=max(ans,hashing[v.first]);
+        }
+     for(auto v:hashing){
+            if(v.first%2==0){
+            if(ans==hashing[v.first])return v.first;
+            }}
+    return -1;
+    }
+};
