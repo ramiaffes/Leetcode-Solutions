@@ -1,0 +1,76 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+bool test=true;
+vector<int>res;
+int val=0;
+void dfs( TreeNode* u,vector<int>& voyage){
+    if(test==false)return;
+    if(u==NULL){return ;}
+   val++; 
+if(val==voyage.size())return;    if(u->right==NULL){if(u->left==NULL){return;}
+         if(u->left->val==voyage[val]){
+               
+        }
+        else  {test=false;}
+    }
+    else if(u->left==NULL){
+        
+         if(u->right->val==voyage[val]){
+              
+        }
+        else test=false;
+    }
+ 
+    else if((u->left->val!=voyage[val])and(u->right->val!=voyage[val])){
+       
+        test=false;return;
+    }
+    else if(u->right->val==voyage[val]){
+        res.push_back(u->val);
+        TreeNode* valeur=u->right;
+         TreeNode* valeur1=u->left;
+        u->left=valeur;
+        u->right=valeur1;
+    }
+        
+    
+    
+    dfs(u->left,voyage);
+  dfs(u->right,voyage);}
+vector<int>res2;
+void dfs1( TreeNode* u){
+    if(u==NULL){return ;}
+        res2.push_back(u->val);
+    
+    
+    dfs1(u->left);
+  dfs1(u->right);}
+class Solution {
+public:
+    vector<int> flipMatchVoyage(TreeNode* root, vector<int>& voyage) {
+        test=true;
+       
+        res.clear();
+        res2.clear();
+        if(voyage[0]!=root->val){
+            test=false;
+        } val=0;
+        dfs(root,voyage);
+        vector<int>res1;
+        res1.push_back(-1);
+       
+        if(test==false)return res1;
+        dfs1(root);
+        if(res2!=voyage)return res1;
+        return res;
+    }
+};
