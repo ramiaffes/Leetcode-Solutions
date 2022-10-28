@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int maximumRows(vector<vector<int>>& mat, int cols) {
+int n=mat.size();
+    int m=mat[0].size();
+    int tot=1<<m;
+	int som=0;
+    int ans=0;
+        bool test=true;    map<int,bool>vis;
+	for(int mask=0;mask<tot;mask++){
+		set<int>res;
+        som=0;
+        vis.clear();
+		for(int i=0;i<m;i++){
+			int f=1<<i;
+			if(mask&f){
+				res.insert(i);
+				}
+			}
+			if(res.size()==cols){
+                for(auto v:res)vis[v]=1;
+                for(int i=0;i<n;i++){
+                    test=true;
+                    for(int j=0;j<m;j++){
+                        if((mat[i][j]==1)and(vis[j]==0)){test=false;break;}
+                    }
+                    if(test==true)som++;
+                }
+            ans=max(ans,som);
+            }}
+    return ans;
+    }
+};
