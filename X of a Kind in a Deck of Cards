@@ -1,0 +1,23 @@
+int  pgcd(int a,int b){
+    if(a==0)return b;
+    if(b==0)return a;
+    return pgcd(b,a%b);
+}
+class Solution {
+public:
+    bool hasGroupsSizeX(vector<int>& deck) {
+        if(deck.size()==1){
+            return false;
+        }
+        map<int,int>hashing;
+        for(int i(0);i<deck.size();i++){
+            hashing[deck[i]]++;
+        }
+    int var=0;
+    for(auto v:hashing){
+        var=pgcd(var,v.second);
+    }
+        return (var!=1);
+    
+    }
+};
