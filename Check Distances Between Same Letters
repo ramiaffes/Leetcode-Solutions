@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool checkDistances(string s, vector<int>& distance) {
+        for(int i=0;i<26;i++){
+            if(s.find(i+97)==string::npos)continue;
+            if((s.rfind(i+97)-s.find(i+97)-1)!=distance[i])return false;
+        }
+        return true;
+    }
+};
