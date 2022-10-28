@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int longestPalindrome(vector<string>& words) {
+        map<string,int>hashing;
+        int som=0;
+        for(int i=0;i<words.size();i++){
+            hashing[words[i]]++;
+        }
+    for(auto v:hashing){
+        string str=v.first;
+        reverse(str.begin(),str.end());
+        if(str==v.first){
+            som+=(hashing[v.first]/2)*2;
+            if(hashing[v.first]%2==1)hashing[v.first]=1;
+           else hashing[v.first]=0;
+        }
+    else{
+        som+=2*min(hashing[v.first],hashing[str]);
+        int val=min(hashing[v.first],hashing[str]);
+        hashing[v.first]-=val;
+        hashing[str]-= val;  
+    }
+    }
+    for(auto v:hashing){
+        
+        if((hashing[v.first]!=0)and(v.first[0]==v.first[1])){
+            som+=1;
+            break;
+        }
+    }
+    return 2*som;
+    
+        
+    }
+};
