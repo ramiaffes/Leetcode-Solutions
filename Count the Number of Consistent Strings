@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        long long int som=0;
+     map<char,bool>vis;
+        for(long long int i(0);i<allowed.length();i++){
+             vis[allowed[i]]=1;
+        }
+        for(long long int i(0);i<words.size();i++){
+            bool test=true;
+            for(long long int j(0);j<words[i].length();j++){
+                if(vis[words[i][j]]==0){
+                    test=false;break;
+                }
+                
+            }
+        if(test==true)som++;
+        }
+    return som;
+    }
+};
