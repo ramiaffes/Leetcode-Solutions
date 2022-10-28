@@ -1,0 +1,39 @@
+map<pair<int,int>,vector<pair<int,int>>>adj;
+map<pair<int,int>,bool>vis;
+void dfs(pair<long long int,long long int>u){
+	if(vis[u]==1)return;
+	vis[u]=1;
+	for(auto v:adj[u]){
+		if(vis[v]){
+			continue;}
+		dfs(v);}}
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        adj.clear();
+        vis.clear();
+        int som=0;
+        for(int i=0;i<grid.size();i++){
+           for(int j=0;j<(grid[i].size()-1);j++){
+               if((grid[i][j]=='1')and(grid[i][j+1]=='1')){
+                   adj[make_pair(i,j)].push_back(make_pair(i,j+1));
+                   adj[make_pair(i,j+1)].push_back(make_pair(i,j));
+               }
+           }}
+        int m=grid[0].size();
+        for(int j=0;j<m;j++){
+           for(int i=0;i<(grid.size()-1);i++){
+               if((grid[i][j]=='1')and(grid[i+1][j]=='1')){
+                   adj[make_pair(i,j)].push_back(make_pair(i+1,j));
+                   adj[make_pair(i+1,j)].push_back(make_pair(i,j));
+               }
+           }}
+       for(int i=0;i<grid.size();i++){
+           for(int j=0;j<m;j++){
+               if((vis[make_pair(i,j)]==0)and(grid[i][j]=='1')){dfs(make_pair(i,j));
+               som++;}
+           }
+       }
+        return som;
+    }
+};
