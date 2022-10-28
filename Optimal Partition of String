@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int partitionString(string s) {
+        map<char,int>hashing;
+        int som=1;
+        for(int i=0;i<s.length();i++){
+            hashing[s[i]]++;
+            if(hashing[s[i]]>=2){
+                hashing.clear();
+                hashing[s[i]]++;
+                som++;
+            }
+        }
+      return som;  
+    }
+};
