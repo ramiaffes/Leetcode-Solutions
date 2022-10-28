@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        map<int,int>vis;
+        int som=0;
+        for(int i=0;i<nums.size();i++){
+            som+=nums[i];
+            if((som%k==0)and(i>0))return true;
+            if((vis[som%k]!=0)and((i+1-vis[som%k])>=2)){return true;}
+            if(vis[som%k]==0){
+            vis[som%k]=i+1;}
+        }
+    return false;
+    }
+};
