@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int countHomogenous(string s) {
+    long long int som=1;
+    long long int som1=0;
+    vector<long long int>res;
+    for(int i=1;i<s.length();i++){
+        if(s[i]==s[i-1]){
+            som++;
+        }
+    else{
+        res.push_back(som);
+        som=1;
+    }
+    }
+    res.push_back(som);
+    for(auto v:res){
+        som1+=((((v)*(v+1))/2)%1000000007);
+        som1=som1%1000000007;
+    }
+    return som1%1000000007;
+    }
+};
