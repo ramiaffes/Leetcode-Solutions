@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+ 
+vector<string>res33;
+map<string,bool>vis;
+void dfs1( TreeNode* u,string res){
+    if(u==NULL)return;
+    string val1(1,u->val+97);
+     res.append(val1);
+    
+    vis[res]=1;if((u->left==NULL)and(u->right==NULL)){
+        reverse(res.begin(),res.end());
+       
+        res33.push_back(res);
+    }
+    dfs1(u->left,res);
+    dfs1(u->right,res);
+		}
+class Solution {
+public:
+    string smallestFromLeaf(TreeNode* root) {
+        res33.clear();
+        vis.clear();
+        string res="";
+        dfs1(root,res);
+        int  val=0;
+        for(int i=0;i<res33.size();i++){
+            char char_array[res33[i].length() + 1];
+        strcpy(char_array, res33[i].c_str());
+          char char_array2[res33[val].length() + 1];
+        strcpy(char_array2, res33[val].c_str()); 
+            if(strcmp(char_array2,char_array)>0){
+                val=i;
+            }
+        }
+        return res33[val];
+    }
+};
