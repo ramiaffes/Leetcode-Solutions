@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int xorAllNums(vector<int>& nums1, vector<int>& nums2) {
+        map<int,int>hashing;
+        for(int i=0;i<nums1.size();i++){
+            hashing[nums1[i]]+=nums2.size();
+        }
+     for(int i=0;i<nums2.size();i++){
+         hashing[nums2[i]]+=nums1.size();
+     }
+    int res=0;
+    for(auto v:hashing){
+        if(hashing[v.first]%2==0){
+            res^=0;
+        }
+    else{
+        res^=v.first;
+    }
+    }
+    return res;
+    }
+};
