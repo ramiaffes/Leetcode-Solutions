@@ -1,0 +1,86 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+class Solution {
+public:  
+    ListNode* reverseList(ListNode* head) {
+        ListNode* res1= NULL;
+        ListNode* res=NULL;
+        ListNode* curr=head;
+        while(curr!=NULL){
+        res1=new ListNode();
+        res1->val=curr->val;
+        res1->next=res;
+        res=res1;
+        curr=curr->next;}
+    return res;}
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* curr1=list1;
+        ListNode* curr2=list2;
+         ListNode* res=NULL;
+          ListNode* res3=NULL;
+          ListNode* res4=NULL;
+        while((curr1!=NULL)or(curr2!=NULL)){
+            if(curr2==NULL){
+                ListNode* res1=new ListNode();
+                res1->val=curr1->val;
+                if(res==NULL)res=res1;
+              else  res->next=res1;
+                  res3=new ListNode();
+        res3->val=res->val;
+        res3->next=res4;
+        res4=res3;
+                 res=res->next;
+                curr1=curr1->next; 
+            }
+        else if(curr1==NULL){
+             ListNode* res1=new ListNode();
+                res1->val=curr2->val;
+                    if(res==NULL)res=res1;
+              else  res->next=res1;
+              res3=new ListNode();
+        res3->val=res->val;
+        res3->next=res4;
+        res4=res3;
+             res=res->next;
+            curr2=curr2->next;
+        }
+        else{
+           ListNode* res1=new ListNode();
+            if(curr2->val<curr1->val){
+                res1->val=curr2->val;
+                    if(res==NULL)res=res1;
+              else  res->next=res1;
+                  res3=new ListNode();
+        res3->val=res->val;
+        res3->next=res4;
+        res4=res3;
+                 res=res->next;
+            curr2=curr2->next;}
+            else{
+                
+                res1->val=curr1->val;
+                    if(res==NULL)res=res1;
+              else  res->next=res1;
+                 res3=new ListNode();
+        res3->val=res->val;
+        res3->next=res4;
+        res4=res3;
+                res=res->next;
+            curr1=curr1->next; 
+            }
+        }
+     
+        }
+        
+        return reverseList(res4);
+    }
+};
