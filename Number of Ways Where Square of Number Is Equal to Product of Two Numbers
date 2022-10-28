@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int numTriplets(vector<int>& nums1, vector<int>& nums2) {
+        map<long long , int>hashing;
+         map<long long , int>hashing1;
+       for(int i=0;i<(nums1.size()-1);i++){
+           for(int j=i+1;j<nums1.size();j++){
+               long long res= nums1[j];
+               long long res1=nums1[i];
+               hashing[res*res1]++;
+           }
+       }
+      for(int i=0;i<(nums2.size()-1);i++){
+           for(int j=i+1;j<nums2.size();j++){
+               long long res= nums2[j];
+               long long res1=nums2[i];
+               hashing1[res*res1]++;
+           }
+       }
+    int som=0;
+    for(int i=0;i<nums1.size();i++){
+         long long res= nums1[i];
+               long long res1=nums1[i];
+        som+=hashing1[res*res1];
+    }
+      for(int i=0;i<nums2.size();i++){
+          long long res= nums2[i];
+               long long res1=nums2[i];
+        som+=hashing[res*res1];
+    }
+    return som;
+    }
+};
