@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int numSub(string s) {
+        int som=0;
+        long long int som1=0;
+        vector<int>res;
+       for(int i(0);i<s.length();i++){
+           if(s[i]=='1'){som++;}
+           else{
+               if(som!=0)
+               res.push_back(som);
+               som=0;
+           }
+
+       }
+    if(som!=0)res.push_back(som);
+    for(auto v:res){
+        long long int val=(v+1);
+        long long int val1=v;
+        som1+=(val*val1)/2;
+        som1=som1%1000000007;
+    }
+    return som1%1000000007;
+    }
+};
