@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int findLUSlength(vector<string>& strs) {map<string,set<int>>vis;
+         for(int j=0;j<strs.size();j++){
+    int tot=1<<strs[j].length();
+	string res;
+	for(int mask=0;mask<tot;mask++){
+		res.clear();
+		for(int i=0;i<strs[j].length();i++){
+			int f=1<<i;
+			if(mask&f){
+                string val(1,strs[j][i]);
+				res.append(val);
+				}
+			}
+			vis[res].insert(j);}
+         }
+    int ans=-1;
+    for(auto v:vis){
+        if(vis[v.first].size()==1){
+        int val1=v.first.size();
+        ans=max(ans,val1);}
+    }                                        
+    return ans;
+    }
+};
