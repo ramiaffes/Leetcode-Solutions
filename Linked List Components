@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    int numComponents(ListNode* head, vector<int>& nums) {
+        ListNode* curr=head;
+        map<int,bool>vis;
+        int som=0;
+        bool test=false;
+        for(int i=0;i<nums.size();i++){
+            vis[nums[i]]=1;
+        }
+        while(curr!=NULL){
+            if(vis[curr->val]==0){
+                test=false;
+            }
+            else{
+                if(test==false){
+                    som++;
+                    test=true;
+                }
+            }
+           curr=curr->next;
+        }
+        
+    return som;
+    }
+};
