@@ -1,0 +1,39 @@
+class Solution {
+  List<int> topKFrequent(List<int> nums, int k) {
+      var hashing={};
+      var hashing1={};
+      List<int>res=[];
+      var lis=<dynamic>{};
+      for(int i=0;i<nums.length;i++){
+          if(hashing[nums[i]]==null) hashing[nums[i]]=1;
+          else hashing[nums[i]]++;
+      }
+      for(int i=0;i<nums.length;i++){
+          if(hashing1[hashing[nums[i]]]==null){
+              hashing1[hashing[nums[i]]]={nums[i]};
+              
+          }
+          else{ hashing1[hashing[nums[i]]].add(nums[i]);
+               }
+      }
+     for( var key in hashing.keys){
+         lis.add(hashing[key]);
+     }
+      var lis1=lis.toList();
+     lis1.sort();
+      int som=0;
+      for(int i=lis.length-1;i>=0;i--){
+          for(int j=0;j<hashing1[lis1[i]].length;j++){
+              som++;
+              if(hashing1[lis1[i]].elementAt(j) is int)
+              res.add(hashing1[lis1[i]].elementAt(j)); 
+              if(k==som){
+                  return res;
+              }
+          }
+      }
+     
+     
+
+  return res;}
+}
