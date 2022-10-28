@@ -1,0 +1,75 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+     ListNode* reverseList(ListNode* head,ListNode* val22) {
+        ListNode* res1= NULL;
+        ListNode* res=NULL;
+        ListNode* curr=head;
+        while(curr!=val22){
+        res1=new ListNode();
+        res1->val=curr->val;
+        res1->next=res;
+        res=res1;
+        curr=curr->next;}
+    return res;
+    }
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode* curr=head;
+        ListNode* val21=NULL;
+        ListNode* val22=NULL;
+        ListNode* val23=NULL;
+        ListNode* val24=NULL;
+        int som=0;if(left==1)val22=head;
+        while(curr!=NULL){
+            som++;   
+            
+            if(som==left-1){val21=curr;val22=curr->next;}
+            if(som==right){val23=curr;val24=curr->next;}
+            curr=curr->next;
+        }
+    ListNode* res=reverseList( val22,val24);
+    if(val21!=NULL){
+    val21->next=res; }
+    else{curr=res;
+    while(curr->next!=NULL){
+        
+        curr=curr->next;
+        if(curr==NULL)break;
+    }
+        curr->next=val24;
+    return res;}
+       curr=res;
+    while(curr->next!=NULL){
+        curr=curr->next;
+        if(curr==NULL)break;
+    }
+        curr->next=val24;
+    
+    
+    return head;
+        
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        int i=1;
+        int n=0;
+        ListNode* curr=head;
+        while(curr!=NULL){
+            n++;
+            curr=curr->next;
+        }
+        while((i+k-1)<=n){
+         head=reverseBetween(head,i, i+k-1);
+            
+        i+=k;}
+    return head;
+    }
+};
