@@ -1,0 +1,66 @@
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        vector<string>res;
+        string res1;
+        int val1=0;
+        for(int i=num1.length()-1;i>=0;i--){
+            int val=num1[i]-'0';
+            val1=0;
+            res1.clear();
+            for(int j=num2.length()-1;j>=0;j--){
+                int val2=num2[j]-'0'; 
+                int val44=(val*val2+val1)%10;
+                string val33(1,val44+'0');
+               
+                res1.append(val33);
+                val1=(val*val2+val1)/10;
+            }
+        if(val1!=0){
+            string val5(1,val1+'0');
+             res1.append(val5);
+        }
+        reverse(res1.begin(),res1.end());
+        res.push_back(res1);
+        }
+    for(int i=0;i<res.size();i++){
+        for(int j=0;j<i;j++){
+            res[i].append("0");
+        }
+    }
+        int ans=0;
+        for(int i=0;i<res.size();i++){
+            int rh=res[i].size();
+            ans=max(ans,rh);
+        }
+     for(int i=0;i<res.size();i++){
+         while(res[i].size()<ans){
+             res[i].insert(0,"0");
+         }
+     }
+        string res3=res[0];
+        int val10=0;
+        string som;
+        for(int i(1);i<res.size();i++){
+            string val11=res[i];
+            som.clear();
+            for(int j=val11.length()-1;j>=0;j--){
+                string som1(1,((1,val11[j]-'0'+res3[j]-'0'+val10)%10+'0'));
+                som.append(som1);
+                val10=(1,val11[j]-'0'+res3[j]-'0'+val10)/10;
+                
+            }
+        if(val10!=0){
+            string som1(1,val10+'0');
+            som.append(som1);
+        }
+        reverse(som.begin(),som.end());
+        res3=som;
+        }
+       
+        while((res3.length()!=1)and(res3[0]=='0')){
+            res3.erase(0,1);
+        }
+        return res3;
+    }
+};
