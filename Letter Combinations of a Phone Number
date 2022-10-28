@@ -1,0 +1,64 @@
+class Solution {
+  List<String> letterCombinations(String digits) {
+ var map={};
+      map['2']="abc";
+      map['3']="def";
+      map['4']="ghi";
+      map['5']="jkl";
+      map['6']="mno";
+      map['7']="pqrs";
+      map['8']="tuv";
+      map['9']="wxyz";
+      String variable="";
+      List<String>res=[];
+      if(digits.length==0){
+          return[];
+      }
+     else if(digits.length==1){
+         
+         for(int i=0;i<map[digits[0]].length;i++){
+              variable="";
+             variable+=(map[digits[0]][i]).toString();
+             res.add(variable);
+         }
+    
+     }
+     else if(digits.length==2){
+           for(int i=0;i<map[digits[0]].length;i++){
+             for(int j=0;j<map[digits[1]].length;j++){
+            variable="";
+           variable+=(map[digits[0]][i]).toString();
+            variable+=(map[digits[1]][j]).toString();
+             res.add(variable);
+         }
+     }
+      
+
+  }
+     else if(digits.length==3){
+         
+           for(int i=0;i<map[digits[0]].length;i++){
+             for(int j=0;j<map[digits[1]].length;j++){
+            for(int j1=0;j1<map[digits[2]].length;j1++){ variable="";
+           variable+=(map[digits[0]][i]).toString();
+            variable+=(map[digits[1]][j]).toString();
+            variable+=(map[digits[2]][j1]).toString();
+             res.add(variable);}
+         }}
+     }
+else{
+           for(int i=0;i<map[digits[0]].length;i++){
+             for(int j=0;j<map[digits[1]].length;j++){
+            for(int j1=0;j1<map[digits[2]].length;j1++){
+            for(int j2=0;j2<map[digits[3]].length;j2++){
+             variable="";
+           variable+=(map[digits[0]][i]).toString();
+            variable+=(map[digits[1]][j]).toString();
+            variable+=(map[digits[2]][j1]).toString();
+            variable+=(map[digits[3]][j2]).toString();
+             res.add(variable);}
+         }}}
+}
+     return res;
+  }
+}
