@@ -1,0 +1,27 @@
+class Solution {
+  String largestWordCount(List<String> messages, List<String> senders) {
+     int ans=0;
+      String ans1="";
+      var hashing={};
+     for(int i=0;i<senders.length;i++){
+         if(hashing[senders[i]]==null)hashing[senders[i]]=messages[i].split(" ");
+         else hashing[senders[i]].addAll(messages[i].split(" "));
+     }
+      for(var key in hashing.keys){
+          if(ans<hashing[key].length){
+              ans=hashing[key].length;
+          }
+      }
+     for(var key in hashing.keys){
+         if(hashing[key].length==ans){
+             if(ans1.compareTo(key)==-1){
+                 ans1=key;
+             }
+         }
+     }
+     return ans1;
+     
+     
+
+  }
+}
