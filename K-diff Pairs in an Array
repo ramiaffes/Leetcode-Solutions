@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+       set<pair<int,int>>se;
+       map<int,int>vis;
+       for(int i=0;i<nums.size();i++){
+           vis[nums[i]]+=1;
+       }
+         for(int i=0;i<nums.size();i++){
+             if(((k!=0)and(vis[nums[i]+k]>=1))or((k==0)and(vis[nums[i]]>=2))){
+                
+                 se.insert(make_pair(nums[i],nums[i]+k));
+             }
+         }
+        return se.size();
+    }
+};
