@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        int val=-1e9;
+        int som=0;
+        vector<int>res;
+        for(int i=0;i<(nums.size()-1);i++){
+            if((nums[i]-nums[i+1])==val){
+                som++;
+            }
+        else{
+            if(som!=0)
+            res.push_back(som);
+            val=(nums[i]-nums[i+1]);
+            som=1;
+        }
+        }
+    res.push_back(som);
+    int som1=0;
+    for(auto v:res){
+        som1+=(v*(v-1))/2;
+    }
+    return som1;
+    
+    }
+};
