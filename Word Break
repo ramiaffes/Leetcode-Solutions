@@ -1,0 +1,31 @@
+map<string ,bool>vis;
+map<string,bool>vis2;
+map<string,bool>dp;
+void func(string s){
+    vis2[s]=1;
+    if(vis[s]==1){dp[s]=true;return;}
+    for(int i=0;i<s.length();i++){
+        string str1=s.substr(0,i+1);
+        string str2=s.substr(i+1,s.length()-i);
+        if(vis[str1]==0)continue;
+        if(vis2[str2]==0){
+            func(str2);
+        }
+        if(dp[str2]==true){
+        dp[s]=true;return;}
+    }
+
+
+}
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        dp.clear();
+        vis.clear();
+        vis2.clear();
+        for(auto v:wordDict){vis[v]=1;}
+        func(s);
+
+        return dp[s];
+    }
+};
