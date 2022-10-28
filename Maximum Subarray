@@ -1,0 +1,35 @@
+class Solution {
+  int maxSubArray(List<int> nums) {
+      var dp=[];
+      var dp1=[];
+      for(int i=0;i<nums.length;i++){
+          dp.add(0);
+      }
+      dp[0]=nums[0];
+      for(int i=1;i<nums.length;i++){
+          dp[i]=dp[i-1];
+          dp[i]+=nums[i];
+      }
+     for(int i=0;i<nums.length;i++){
+          dp1.add(1000000);
+      }
+     dp1[0]=dp[0];
+     for(int i=1;i<dp1.length;i++){ 
+     dp1[i]=dp1[i-1];
+     if(dp1[i]>dp[i]){
+         dp1[i]=dp[i];
+     }}
+     int ans=dp[0];
+     for(int i=1;i<nums.length;i++){
+         if(ans<(dp[i]-dp1[i-1])){
+             ans=dp[i]-dp1[i-1];}
+     }
+     for(int i=1;i<nums.length;i++){
+     if(dp[i]>ans)
+         ans=dp[i];
+         }
+     
+     
+return ans;
+  }
+}
