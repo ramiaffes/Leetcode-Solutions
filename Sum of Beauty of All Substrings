@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int beautySum(string s) {
+       long long  int ans=0;
+       long long  int ans1=0;
+        long long int som=0;
+        map<long long int,long long int>vis;
+        map<char,long long int>hashing;
+        vis[0]=26;
+        for(int i=0;i<(s.length());i++){
+            ans=1;
+            ans1=1;
+            hashing.clear();
+            vis.clear();
+            vis[0]=26;
+            for(int j=i;j<s.length();j++){
+                if((ans1==(hashing[s[j]]))and((vis[ans1]==1))){
+                    ans1=ans1+1;
+                }
+                vis[hashing[s[j]]]--;
+                hashing[s[j]]++;
+                vis[hashing[s[j]]]++;long long int val3=hashing[s[j]];
+                ans1=min(ans1,val3);
+                ans=max(ans,val3);
+                som+=(ans-ans1);
+            }
+        }
+    return som;
+    }
+};
