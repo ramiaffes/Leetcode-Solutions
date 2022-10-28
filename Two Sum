@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>res;
+        map<int,int>hashing;
+        for (int i(0);i<nums.size();i++){
+            if((2*nums[i]==target)and(hashing[nums[i]]!=0)){
+                res.push_back(hashing[nums[i]]-1);
+                res.push_back(i);
+                return res;
+            }
+            hashing[nums[i]]=i+1;
+        }
+    for(auto v:hashing){
+        if(hashing[target-v.first]!=0){
+            res.push_back(hashing[v.first]-1);
+            res.push_back(hashing[target-v.first]-1);
+            break;
+        }
+    }
+        return res;
+    
+    }
+};
