@@ -1,0 +1,24 @@
+class Solution {
+  int countPalindromicSubsequence(String s) {
+ var hashing={};
+int som=0;
+for(int i=0;i<s.length;i++){
+    if(hashing[s[i]]==null){
+        hashing[s[i]]=[i];
+        hashing[s[i]].add(0);
+    }
+else{
+    hashing[s[i]][1]=i;
+}
+}
+for(var key in hashing.keys){
+    var se=[].toSet();
+    if(hashing[key][0]==hashing[key][1])continue;
+    for(int i=hashing[key][0]+1;i<hashing[key][1];i++){
+        se.add(s[i]);  if(se.length==26){ break;  }
+    }
+   som+=se.length;                                         
+  }
+return som;
+  }
+}
