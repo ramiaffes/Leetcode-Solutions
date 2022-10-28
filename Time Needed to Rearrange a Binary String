@@ -1,0 +1,38 @@
+class Solution {
+  int secondsToRemoveOccurrences(String s) {
+      var dp=[];
+      int som=0;
+      var dp1=[];
+     for(int i=0;i<s.length;i++){
+         dp.add(0);
+     }
+     if(s[0]=='0')dp[0]++;
+     for(int i=1;i<s.length;i++){
+        dp[i]=dp[i-1];
+         if(s[i]=='0')
+        dp[i]+=1;
+        
+     }
+     for(int i=0;i<s.length;i++){
+         if(s[i]=='1'){
+             dp1.add(dp[i]); 
+         }
+     }
+      bool test=true;
+      var vis={};
+     while(test==true){
+         test=false;
+         vis={};
+     for(int i=0;i<dp1.length;i++){
+         if((vis[dp1[i]]==null)&&(dp1[i]!=0)){ vis[dp1[i]]=1;
+             dp1[i]--;
+             test=true;
+            
+         }
+     }
+         if(test==true){som++;
+   }
+         }
+     return som;
+  }
+}
