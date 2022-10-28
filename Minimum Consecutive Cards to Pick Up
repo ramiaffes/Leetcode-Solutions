@@ -1,0 +1,24 @@
+class Solution {
+  int minimumCardPickup(List<int> cards) {
+      var hashing={};
+      int ans=1000000;
+     int variable =0;
+      for(int i=0;i<cards.length;i++){
+          if(hashing[cards[i]]!=null){
+              if(hashing[cards[i]] is int){
+                  variable=hashing[cards[i]];
+              }
+              if(ans>(i-variable+1)){
+                  ans=(i-variable+1);
+                  
+                  
+              }
+          }hashing[cards[i]]=i;
+      }
+     if(ans==1000000)return -1;
+    return ans;
+     
+     
+
+  }
+}
