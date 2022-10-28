@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        map<char,long long int>hashing;
+        map<char,long long int>hashing1;
+        for(int i=0;i<s1.length();i++){
+            hashing[s1[i]]++;
+        }
+        int j=0;
+        int i=0;
+        bool test=false;
+         while(j<s2.length()){
+             test=false;
+             if(hashing1[s2[j]]<hashing[s2[j]]){
+                 hashing1[s2[j]]++;
+                 j++;
+             }
+            else if (hashing1[s2[j]]==hashing[s2[j]]){
+                  for(int i1=0;i1<26;i1++){
+                if(hashing1[i1+97]!=hashing[i1+97]){test=true;break;}
+            }
+        if(test==false){
+            return true;
+        }
+                hashing1[s2[i]]--;i++; 
+            }
+            else{
+                hashing1[s2[i]]--;i++;
+            }
+            for(int i1=0;i1<26;i1++){
+                if(hashing1[i1+97]!=hashing[i1+97]){test=true;break;}
+            }
+        if(test==false){
+            return true;
+        }
+             
+        }
+    
+    return false;
+    }
+};
