@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int minSwaps(vector<int>& nums) {
+        int som=0;
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==1)som++;
+        }if(som==0)return 0;
+    vector<int>dp(nums.size());
+    int ans=1e9;
+    dp[0]=(nums[0]==0);
+    for(int i=1;i<nums.size();i++){
+        dp[i]=dp[i-1];
+        if(nums[i]==0)dp[i]++;
+    }
+    vector<int>dp1(nums.size());
+    dp1[nums.size()-1]=(nums[nums.size()-1]==0);
+    for(int i=nums.size()-2;i>=0;i--){
+        dp1[i]=dp1[i+1];
+        if(nums[i]==0)dp1[i]++;
+    }
+for(int i=0;i<nums.size();i++){
+    if((((som-1)>i))and((n-(som-i-1))>=0)){
+    ans=min(ans,dp[i]+dp1[n-(som-i-1)]);
+   }
+}
+for(int i=0;i<nums.size();i++){
+    if(((i+som-1)>=0)and((i+som-1)<n))
+    ans=min(ans,(dp[i+som-1]-dp[i]+(nums[i]==0)));
+}
+ans=min(ans,dp[som-1]);
+ans=min(ans,dp1[n-som]);
+return ans;
+
+    }
+};
