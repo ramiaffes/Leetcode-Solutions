@@ -1,0 +1,31 @@
+map<long long int,vector<long long int>>adj;
+map<long long int,bool>vis;
+map<long long int,int>m;
+bool test=true;
+void dfs(long long int u,int cur_ty){
+    if(test==false)return;
+	if(vis[u]==1)return;
+	vis[u]=1;
+    m[u]=cur_ty;
+	if(adj[u].empty())return;
+	for(auto v:adj[u]){
+		if((vis[v])){if(m[v]==cur_ty)test=false;continue;}
+		dfs(v,1-cur_ty);
+		}}
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        adj.clear();
+        vis.clear();
+        test=true;
+        for(int i=0;i<graph.size();i++){
+            for(auto v:graph[i]){
+            adj[i].push_back(v);}
+        }
+    for(int i=0;i<graph.size();i++){
+        if(vis[i]==0)dfs(i,0);
+        if(test==false)return false;
+    }
+        return true;
+    }
+};
