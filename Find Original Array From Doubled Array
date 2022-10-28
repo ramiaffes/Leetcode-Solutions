@@ -1,0 +1,26 @@
+class Solution {
+  List<int> findOriginalArray(List<int> changed) { var hashing= {};
+for(int i=0;i<changed.length;i++){
+   
+    if(hashing[changed[i]]==null) hashing[changed[i]]=1;
+   else hashing[changed[i]]++;
+}
+var changed1=changed.toSet();
+var changed2=changed1.toList();
+ changed2.sort();
+List<int> res=[];
+for(int i=0;i<changed2.length;i++){
+    while(hashing[changed2[i]]!=0){
+        if((hashing[changed2[i]*2]==0)||(hashing[changed2[i]*2]==null))return [];
+        hashing[changed2[i]]--;
+        if(hashing[changed2[i]*2]==0)return [];
+        hashing[changed2[i]*2]--;
+        if(changed2[i] is int)
+        res.add(changed2[i]);
+    }
+}
+                                                                                                  
+                                                  
+   return res; 
+  }
+}
