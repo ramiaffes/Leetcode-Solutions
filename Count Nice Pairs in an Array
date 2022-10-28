@@ -1,0 +1,21 @@
+class Solution {
+  int countNicePairs(List<int> nums) {
+      var vis={};
+      int som=0;
+      for(int i=0;i<nums.length;i++){
+          String vari=(nums[i]).toString();
+          vari=(vari.split("").reversed.join());
+          int vari2=int.parse(vari);
+          if(vis[vari2-nums[i]]==null)vis[vari2-nums[i]]=1;
+          else vis[vari2-nums[i]]++;
+      }
+     int var2=0;
+     for(var key in vis.keys){
+         if(vis[key] is int)
+        var2=vis[key];
+         som+=(((var2-1)*var2)~/2)%1000000007;
+         som=som%1000000007;
+     }
+    return som;
+  }
+}
