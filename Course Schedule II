@@ -1,0 +1,89 @@
+const int N=10000;
+map<long long int,vector<long long int>>adj;
+map<long long int,vector<long long int>>adj1;
+map<long long int,bool>vis;
+bool test=true;
+map<long long int,int>lev;
+void dfs1(long long int u){
+    if(test==false)return;
+    if(vis[u]==1)return;
+    vis[u]=1; 
+    if(adj[u].size()==0)return;
+    bool test2=false;
+for(auto v:adj[u]){
+    if(lev[v]==0){
+        test2=true;break;
+    }
+}
+if(test2)lev[u]=1;
+    else lev[u]=2;
+    
+	for(auto v:adj[u]){
+		dfs1(v);}
+for(auto v:adj[u]){
+   
+            if(lev[v]==1){ 
+                test=false;return;
+            }
+        }
+ test2=false;
+for(auto v:adj[u]){
+    if(lev[v]==0){
+        test2=true;break;
+    }
+}
+if(test2)lev[u]=1;
+    else lev[u]=2;
+
+}
+vector<int>res;
+void bfs(int src){
+	queue<int>q;
+    res.clear();
+	q.push(src);
+	while(!q.empty()){
+		int u=q.front();
+       
+		q.pop();
+		 if(u!=src){res.push_back(u);}
+		for(auto v:adj[u]){
+			
+			q.push(v);}
+		}}
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+          vis.clear();
+        adj.clear();
+        test=true;
+        lev.clear();
+        map<int,bool>vis1;
+        adj1.clear();
+        res.clear();
+        for(int i=0;i<prerequisites.size();i++){
+            adj[prerequisites[i][0]].push_back(prerequisites[i][1]);
+            vis1[prerequisites[i][1]]=1;
+        }
+          for(int i=0;i<numCourses;i++){
+            if(adj[i].size()==0){lev[i]=2;}
+        }
+        for(int i=0;i<numCourses;i++){
+        if(vis[i]==0)dfs1(i);
+            if(test==false){return res;}
+    }
+      vis.clear();
+    for(int i=0;i<numCourses;i++){
+        if(vis1[i]==0){adj[-1].push_back(i);}
+    }   
+    bfs(-1);  
+    reverse(res.begin(),res.end());
+        map<int,bool>vis2;
+        vector<int>res2;
+        for(int i=0;i<res.size();i++){
+            if(vis2[res[i]]==0){res2.push_back(res[i]);}
+                         vis2[res[i]]=1;
+        }
+    
+    return res2;
+    }
+};
