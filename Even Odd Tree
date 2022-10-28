@@ -1,0 +1,39 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+bool test=true;
+map<int,vector<int>>my1;
+void dfs( TreeNode* u,int som){
+    if(u==NULL)return;
+    if(my1[som].empty()==false){
+    if(som%2==0){
+if(my1[som][my1[som].size()-1]>=u->val)test=false;}
+    else{
+        if(my1[som][my1[som].size()-1]<=u->val)test=false;
+    }}
+ my1[som].push_back(u->val);
+    if(som%2==(u->val)%2)test= false;
+    
+    som++;   
+    dfs(u->left,som);
+    dfs(u->right,som); 
+ 
+   
+		}
+class Solution {
+public:
+    bool isEvenOddTree(TreeNode* root) {
+        test=true;
+        my1.clear();
+        dfs(root,0);
+    return test;
+    }
+};
