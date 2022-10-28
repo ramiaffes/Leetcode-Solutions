@@ -1,0 +1,50 @@
+map<long long int,vector<long long int>>adj;
+map<long long int,set<long long int>>adj1;
+vector<long long int>res;
+map<long long int,bool>vis;
+void dfs(long long int u){
+    if(vis[u]==1)return;
+	vis[u]=1;
+    res.push_back(u);
+	for(auto v:adj1[u]){
+		dfs(v);}
+}
+class Solution {
+public:
+    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        vis.clear();
+        adj.clear();
+        adj1.clear();
+        res.clear();
+        map<vector< int >,bool>vis2;
+      for(auto v:dislikes){
+          sort(v.begin(),v.end());
+          vis2[v]=1;
+      }
+        for(int i=0;i<dislikes.size();i++){
+            adj[dislikes[i][0]].push_back(dislikes[i][1]);
+            adj[dislikes[i][1]].push_back(dislikes[i][0]);
+        }
+    for(auto v:adj){
+        for(int i=0;i<(adj[v.first].size()-1);i++){
+            adj1[adj[v.first][i]].insert(adj[v.first][i+1]);
+            adj1[adj[v.first][i+1]].insert(adj[v.first][i]);
+        }
+    }
+    vector<vector<long long int>>res1;
+    for(int i=0;i<n;i++){
+        if(vis[i+1]==0){dfs(i+1);
+        res1.push_back(res);res.clear();}
+    }
+    map<long long int,long long int>parent;
+    for(int i=0;i<res1.size();i++){
+        for(auto v:res1[i])
+        parent[v]=i;
+    }
+    for(auto v:dislikes){
+        if(parent[v[0]]==parent[v[1]])return false;
+    }
+    return true;
+    
+    }
+};
