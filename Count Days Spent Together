@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int countDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob) {
+        string str1=arriveAlice.substr(0,2);
+        string str2=arriveAlice.substr(3,2);
+        int val1=stoi(str2);
+        int val2=stoi(str1);
+        int som=0;
+        vector<int>vect={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for(int i=0;i<(val2-1);i++){
+            som+=vect[i];
+        }
+    int res1=som+val1;
+      str1=arriveBob.substr(0,2);
+         str2=arriveBob.substr(3,2);
+        val1=stoi(str2);
+         val2=stoi(str1);
+         som=0;
+     
+        for(int i=0;i<(val2-1);i++){
+            som+=vect[i];
+        }
+    int res2=som+val1;
+      str1=leaveBob.substr(0,2);
+         str2=leaveBob.substr(3,2);
+        val1=stoi(str2);
+         val2=stoi(str1);
+         som=0;
+     
+        for(int i=0;i<(val2-1);i++){
+            som+=vect[i];
+        }
+    int res3=som+val1;
+    str1=leaveAlice.substr(0,2);
+         str2=leaveAlice.substr(3,2);
+        val1=stoi(str2);
+         val2=stoi(str1);
+         som=0;
+     
+        for(int i=0;i<(val2-1);i++){
+            som+=vect[i];
+        }
+    int res4=som+val1;
+    return max(min(res4,res3)-max(res1,res2)+1,0);
+    }
+};
