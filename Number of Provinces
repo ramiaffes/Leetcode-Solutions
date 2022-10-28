@@ -1,0 +1,41 @@
+map<long long int,long long int> parent; 
+void make_set(long long int  v) {
+    parent[v] = v;
+}
+ 
+long long int find_set(long long int v) {
+    if (v == parent[v])
+        return v;
+    return(find_set(parent[v]));
+}
+ 
+void union_sets(long long int a, long long int b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b){
+        parent[b] = a;
+    }
+}
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n= isConnected.size();
+        for(int i=0;i<n;i++){
+            make_set(i);
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(isConnected[i][j]==1){
+                    union_sets(i,j);
+                }
+            }
+        }
+        long long int som=0;
+        for(int i=0;i<n;i++){
+            if(parent[i]==i){
+                som++;
+            }
+        }
+    return som;
+    }
+};
