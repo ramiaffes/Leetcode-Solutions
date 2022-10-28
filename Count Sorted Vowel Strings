@@ -1,0 +1,87 @@
+map<pair<char,int>,bool>vis;
+map<pair<int,char>,int>dp;
+void func(int n,char var){
+    if(n==1){ vis[make_pair(var,n)]=1;dp[make_pair(n,var)]=1;return;}
+    vis[make_pair(var,n)]=1;
+    if(var=='u'){
+        if(vis[make_pair('u',n-1)]==0){
+            func(n-1,'u');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'u')];
+     if(vis[make_pair('o',n-1)]==0){
+            func(n-1,'o');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'o')];
+      if(vis[make_pair('i',n-1)]==0){
+            func(n-1,'i');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'i')];
+      if(vis[make_pair('e',n-1)]==0){
+            func(n-1,'e');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'e')];
+       if(vis[make_pair('a',n-1)]==0){
+            func(n-1,'a');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'a')];
+    }
+    else if(var=='o'){
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'o')];
+      if(vis[make_pair('i',n-1)]==0){
+            func(n-1,'i');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'i')];
+      if(vis[make_pair('e',n-1)]==0){
+            func(n-1,'e');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'e')];
+       if(vis[make_pair('a',n-1)]==0){
+            func(n-1,'a');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'a')];
+    }
+    else if(var=='i'){
+      if(vis[make_pair('i',n-1)]==0){
+            func(n-1,'i');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'i')];
+      if(vis[make_pair('e',n-1)]==0){
+            func(n-1,'e');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'e')];
+       if(vis[make_pair('a',n-1)]==0){
+            func(n-1,'a');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'a')];
+    }
+    else if(var=='e'){
+      if(vis[make_pair('e',n-1)]==0){
+            func(n-1,'e');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'e')];
+       if(vis[make_pair('a',n-1)]==0){
+            func(n-1,'a');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'a')];
+    }
+    else{
+         if(vis[make_pair('a',n-1)]==0){
+            func(n-1,'a');
+        }
+    dp[make_pair(n,var)]+=dp[make_pair(n-1,'a')];
+    }
+}
+class Solution {
+public:
+    int countVowelStrings(int n) {
+        vis.clear();
+        dp.clear();
+        func(n,'u');
+        func(n,'i');
+        func(n,'o');
+        func(n,'a');
+        func(n,'e');
+        return dp[make_pair(n,'u')]+dp[make_pair(n,'i')]+dp[make_pair(n,'o')]+dp[make_pair(n,'e')]+dp[make_pair(n,'a')];
+        
+    }
+};
