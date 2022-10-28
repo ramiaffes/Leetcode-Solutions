@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool checkIfCanBreak(string s1, string s2) {
+        bool test=false;
+        bool test2=false;
+        bool test3=false;
+        bool test4=false;
+        sort(s2.begin(),s2.end());
+        sort(s1.begin(),s1.end());
+        for(int i=s2.length()-1;i>=0;i--){
+            if(s1[i]>=s2[i]){
+                test=true;
+            }
+        if(s2[i]>=s1[i]){
+            test2=true;
+        }
+         if(s2[i]>s1[i]){
+            test3=true;
+        }
+        if(s1[i]>s2[i]){
+            test4=true;
+        }
+        }
+    return (test and(not(test3)))or(test2 and(not(test4)));
+    }
+};
