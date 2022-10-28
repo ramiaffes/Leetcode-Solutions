@@ -1,0 +1,45 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+map<TreeNode*,bool>vis1;
+void dfs( TreeNode* u,int target){
+    if(u==NULL){vis1[u]=1;return;}
+    dfs(u->left,target);
+    dfs(u->right,target);
+    if((vis1[u->left]==1)and(vis1[u->right]==1)and(u->val==target)){
+        vis1[u]=1;
+    }
+  
+		}
+void dfs2( TreeNode* u){
+    if(u==NULL){return;}
+    if(vis1[u->left]==1){
+        u->left=NULL;
+    }
+    if(vis1[u->right]==1){
+        u->right=NULL;
+    }
+    dfs2(u->left);
+    dfs2(u->right);
+  
+		}
+class Solution {
+public:
+    TreeNode* removeLeafNodes(TreeNode* root, int target) {
+        vis1.clear();
+        dfs(root,target);
+        dfs2(root);
+        if(root==NULL)return NULL;
+        if((root->val==target)and(root->left==NULL)and(root->right==NULL)){
+            return NULL;
+        }
+    return root;}
+};
