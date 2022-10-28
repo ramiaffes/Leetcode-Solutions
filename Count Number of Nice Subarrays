@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        int som=0;
+        int i=0;
+        int j=0;
+        int som2=0;
+        int ans=-1;
+        int val=-1;
+        vector<int>res;
+        while(j<nums.size()){
+            if(nums[j]%2==1){som++;res.push_back(j);if(ans==-1)ans=res[val+1];}
+            if(som>k){
+                while((i<=j)and(som>k)){
+                    if(nums[i]%2==1){
+                        som--;
+                        val++;
+                        
+                    }i++;
+                }
+            if(i>j){j++;ans=-1;res.clear();val=-1;som=0;continue;}
+            ans=res[val+1];
+            }
+           if(som==k){som2+=ans-i+1;
+                    }
+            j++;
+        }
+    return som2;
+    }
+};
