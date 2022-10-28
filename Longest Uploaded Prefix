@@ -1,0 +1,35 @@
+class LUPrefix {
+public:
+    LUPrefix(int n) {
+        
+    }
+    map<int,bool>vis;
+    map<int,bool>vis1;
+    int ans=0;
+void upload(int video) {
+        vis[video]=1;
+    if(video==1){vis1[video]=1;if(ans==0)ans=1; while(vis[video+1]==1){
+        ans=video+1;
+        video++;
+        vis1[video]=1;
+    }}
+    if(vis1[video-1]==1){vis1[video]=1;ans=video; 
+    while(vis[video+1]==1){
+        ans=video+1;
+        video++;
+        vis1[video]=1;
+    }}
+   
+    }
+    
+    int longest() {
+        return ans;
+    }
+};
+
+/**
+ * Your LUPrefix object will be instantiated and called as such:
+ * LUPrefix* obj = new LUPrefix(n);
+ * obj->upload(video);
+ * int param_2 = obj->longest();
+ */
