@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        map<int,bool>vis;
+        while((vis[n]==0)and(n!=1)){vis[n]=1;
+           int val=n;
+            int som=0;
+            while(val!=0){
+                som+=(val%10)*(val%10);
+                val/=10;
+            }
+        n=som;
+        
+        }
+       return(n==1); 
+    }
+};
