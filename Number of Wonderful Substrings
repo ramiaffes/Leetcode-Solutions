@@ -1,0 +1,57 @@
+class Solution {
+public:
+    long long wonderfulSubstrings(string word) {
+        map<char,long long int>hashing;
+        map<vector<char>,long long int>hashing1;
+        vector<char>res;
+        for(int i=0;i<word.length();i++){
+            hashing[word[i]]++;
+            if(hashing[word[i]]%2==0){
+                for(int j(res.size()-1);j>=0;j--){
+                    if(res[j]==word[i]){
+                        res.erase(res.begin()+j);
+                    }
+                }
+            hashing1[res]++;
+            }
+            else{
+                res.push_back(word[i]);
+                sort(res.begin(),res.end());
+                hashing1[res]++;
+            }
+        }
+    int tot=1<<10;
+	long long int som1=0;
+   long long  int som=0;
+    res.clear();
+        bool test=true;
+    map<char,bool>vis;
+	for(int mask=0;mask<tot;mask++){
+		res.clear();
+        vis.clear();
+        test=true;
+		for(int i=0;i<10;i++){
+            
+			int f=1<<i;
+			if(mask&f){if(hashing[i+97]==0){test=false;break;}
+				res.push_back(i+97);
+                vis[i+97]=1;
+				}
+			}
+    if(test==false)continue;
+        if(hashing1[res]!=0)
+        som1+=(hashing1[res]*(hashing1[res]-1))/2;
+        if(res.size()<=1)som1+=hashing1[res];
+        for(auto v:res){
+            vector<char>res1(res.begin(),res.end());
+            for(int j=res1.size()-1;j>=0;j--){
+           if(res1[j]==v) {res1.erase(res1.begin()+j);break;}
+        }
+        som+=hashing1[res1]*hashing1[res];
+          
+        }
+			}
+    
+        return som+som1;
+    }
+};
