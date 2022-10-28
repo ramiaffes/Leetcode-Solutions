@@ -1,0 +1,23 @@
+class Solution {
+  List<int> arrayChange(List<int> nums, List<List<int>> operations) {
+     var hashing={};
+      for(int i=0;i<nums.length;i++){
+          hashing[nums[i]]=i;
+      }
+     for (int i=0;i<operations.length;i++){
+         var val= hashing[operations[i][0]];
+         hashing[operations[i][0]]=-1;
+         hashing[operations[i][1]]=val;
+     }
+    List<int>result=nums;
+    for (var key in hashing.keys){
+        if(hashing[key]==-1)continue;
+        if((hashing[key] is int)&&(key is int))
+        result[hashing[key]]=key;
+        
+    }
+    return result;
+    
+
+  }
+}
