@@ -1,0 +1,27 @@
+map<long long int,int>dp;
+map<long long int,bool>vis;
+void transform(long long int i,int n){
+    vis[i]=1;
+if(i==1){dp[i]=0;return;}
+if(i%2==0){
+    if(vis[i/2]==0)transform(i/2,n);
+        dp[i]=dp[i/2]+1;
+
+       
+     }
+else{
+if(vis[i+1]==0)transform(i+1,n);
+if(vis[i-1]==0)transform(i-1,n);
+ dp[i]=min(dp[i+1]+1,dp[i-1]+1);
+        
+}  
+}
+class Solution {
+public:
+    int integerReplacement(int n) {
+        dp.clear();
+        vis.clear();
+        transform(n,n);
+        return dp[n];
+    }
+};
