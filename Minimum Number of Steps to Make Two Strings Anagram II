@@ -1,0 +1,26 @@
+class Solution {
+  int minSteps(String s, String t) {
+      var hashing1={};
+      var hashing2={};
+      int variable1=0;
+      int variable2=0;
+      int som=0;
+      for(int i=0;i<s.length;i++){
+          if(hashing1[s[i]]==null)hashing1[s[i]]=1;
+          else hashing1[s[i]]++;
+      }
+ for(int i=0;i<t.length;i++){
+     if(hashing2[t[i]]==null)hashing2[t[i]]=1;
+          else hashing2[t[i]]++;
+      }
+    for(int i=0;i<26;i++){
+    if(hashing1[String.fromCharCode(i+97)]==null)hashing1[String.fromCharCode(i+97)]=0;
+    if(hashing1[String.fromCharCode(i+97)] is int) variable1=hashing1[String.fromCharCode(i+97)];
+    if(hashing2[String.fromCharCode(i+97)]==null)hashing2[String.fromCharCode(i+97)]=0;
+        if(hashing2[String.fromCharCode(i+97)] is int) variable2=hashing2[String.fromCharCode(i+97)];
+       som+= (variable1-variable2).abs();
+    }
+return som;
+
+  }
+}
