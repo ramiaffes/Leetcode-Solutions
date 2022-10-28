@@ -1,0 +1,51 @@
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        long long int val1=max(a.length(),b.length());
+        while(a.length()<val1){
+            a.insert(0,"0");
+        }
+        while(b.length()<val1){
+            b.insert(0,"0");
+        }
+    long long int val=0;
+    string res;
+    for(long long int i(val1-1);i>=0;i--){
+        if(a[i]==b[i]){
+            if(a[i]=='0'){
+                if(val==0){
+                    res.append("0");
+                    
+                }
+                else{
+                    res.append("1");
+                    val=0;
+                }
+            }
+            else{
+                if(val==0){
+                    res.append("0");
+                    val=1;
+                }
+            else{
+                res.append("1");
+                val=1;
+            }
+            }
+        }
+    else{
+        if(val==0){
+            res.append("1");
+        }
+        else{
+            res.append("0");
+            val=1;
+        }
+        
+    }
+    }
+    if(val==1)res.append("1");
+    reverse(res.begin(),res.end());
+    return res;
+    }
+};
