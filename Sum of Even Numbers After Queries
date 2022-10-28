@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
+        int som=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]%2==0){
+                som+=nums[i];
+            }
+        }
+    vector<int>answers(queries.size());
+    for(int i=0;i<queries.size();i++){ 
+        if((abs(nums[queries[i][1]])%2==0)and(abs(queries[i][0])%2==1)){
+            som-=nums[queries[i][1]];
+           
+            answers[i]=som;
+            nums[queries[i][1]]+=(queries[i][0]);
+            
+        }
+    else if((abs(nums[queries[i][1]])%2==1)and(abs(queries[i][0])%2==1)){ 
+        nums[queries[i][1]]+=(queries[i][0]);
+        som+=nums[queries[i][1]];
+            answers[i]=som;
+           
+    }
+      else if((abs(nums[queries[i][1]])%2==0)and(abs(queries[i][0])%2==0)){ 
+        
+        som+=queries[i][0];
+            answers[i]=som;
+           nums[queries[i][1]]+=(queries[i][0]);
+    }
+    else{
+            answers[i]=som;
+           nums[queries[i][1]]+=(queries[i][0]);
+    }
+    }
+    return answers;
+    }
+};
