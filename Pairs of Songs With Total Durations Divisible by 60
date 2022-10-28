@@ -1,0 +1,21 @@
+class Solution {
+  int numPairsDivisibleBy60(List<int> time) {
+ int som=0;
+      int var1=0;
+ var hashing={};
+for(int i=0;i<time.length;i++){
+    time[i]=time[i]%60;
+    if(hashing[time[i]]==null)hashing[time[i]]=1;
+    else hashing[time[i]]++;
+}
+for(int i=0;i<time.length;i++){
+    if(hashing[(60-time[i])%60] is int)
+        var1=hashing[(60-time[i])%60];
+    if((time[i]==30)|(time[i]==0))som+=var1-1;
+   else {som+=var1;}
+var1=0;
+}
+    return som~/2;
+
+  }
+}
