@@ -1,0 +1,219 @@
+class Solution {
+public:
+    int getSum(int a, int b) {
+        bool test=false;
+        bool test1=false;
+         string res;
+         int res1=0;
+        if((a<0)and(b<0)){
+            a=-a;
+            b=-b;
+            test=true;
+        }
+        else if(b<0){
+            if(abs(b)>abs(a)){
+                a=-a;
+                b=-b;
+                test1=true;
+            }}
+    else if(a<0){
+        if(abs(a)>abs(b)){
+                a=-a;
+                b=-b;
+                test1=true;
+            }
+    }
+        if((a>=0)and(b>=0)){
+        string a1;
+        string b1;
+        while(a!=0){
+            string str(1,a%2+'0');
+            a1.append(str);
+            a/=2;
+        }
+         while(b!=0){
+            string str(1,b%2+'0');
+            b1.append(str);
+            b/=2;
+        }
+        reverse(a1.begin(),a1.end());
+        reverse(b1.begin(),b1.end());
+     
+        long long int val1=max(a1.length(),b1.length());
+        while(a1.length()<val1){
+            a1.insert(0,"0");
+        }
+        while(b1.length()<val1){
+            b1.insert(0,"0");
+        }
+    long long int val=0;
+   
+    for(long long int i(val1-1);i>=0;i--){
+        if(a1[i]==b1[i]){
+            if(a1[i]=='0'){
+                if(val==0){
+                    res.append("0");
+                    
+                }
+                else{
+                    res.append("1");
+                    val=0;
+                }
+            }
+            else{
+                if(val==0){
+                    res.append("0");
+                    val=1;
+                }
+            else{
+                res.append("1");
+                val=1;
+            }
+            }
+        }
+    else{
+        if(val==0){
+            res.append("1");
+        }
+        else{
+            res.append("0");
+            val=1;
+        }
+        
+    }
+    }
+    if(val==1)res.append("1");
+    }
+else{
+    if(a<0){
+        a=-a;
+         string a1;
+        string b1;
+        while(a!=0){
+            string str(1,a%2+'0');
+            a1.append(str);
+            a/=2;
+        }
+         while(b!=0){
+            string str(1,b%2+'0');
+            b1.append(str);
+            b/=2;
+        }
+        reverse(a1.begin(),a1.end());
+        reverse(b1.begin(),b1.end());
+     
+        long long int val1=max(a1.length(),b1.length());
+        while(a1.length()<val1){
+            a1.insert(0,"0");
+        }
+        while(b1.length()<val1){
+            b1.insert(0,"0");
+        }
+    int val=0;
+     for(long long int i(val1-1);i>=0;i--){
+         if((b1[i]=='1')and(a1[i]=='0')and(val==0)){
+             res.append("1");
+         }
+        else if ((b1[i]=='1')and(a1[i]=='0')and(val==1)){
+            res.append("0");
+            val=0;
+        }
+        else if((b1[i]=='1')and(a1[i]=='1')and(val==0)){
+            res.append("0");
+        }
+        else if((b1[i]=='1')and(a1[i]=='1')and(val==1)){
+            res.append("1");
+            val=1;
+        }
+        else if((b1[i]=='0')and(a1[i]=='0')and(val==0)){
+            res.append("0");
+            val=0;
+        }
+        else if((b1[i]=='0')and(a1[i]=='0')and(val==1)){
+            res.append("1");
+            val=1;
+        }
+        else if ((b1[i]=='0')and(a1[i]=='1')and(val==0)){
+            res.append("1");
+            val=1;
+        }
+        else{
+            res.append("0");
+            val=1;
+        }
+        
+     }
+    
+    }
+    else{
+        b=-b;
+          string a1;
+        string b1;
+        while(a!=0){
+            string str(1,a%2+'0');
+            a1.append(str);
+            a/=2;
+        }
+         while(b!=0){
+            string str(1,b%2+'0');
+            b1.append(str);
+            b/=2;
+        }
+        reverse(a1.begin(),a1.end());
+        reverse(b1.begin(),b1.end());
+     
+        long long int val1=max(a1.length(),b1.length());
+        while(a1.length()<val1){
+            a1.insert(0,"0");
+        }
+        while(b1.length()<val1){
+            b1.insert(0,"0");
+        }
+     int val=0;
+     for(long long int i(val1-1);i>=0;i--){
+         if((a1[i]=='1')and(b1[i]=='0')and(val==0)){
+             res.append("1");
+         }
+        else if ((a1[i]=='1')and(b1[i]=='0')and(val==1)){
+            res.append("0");
+            val=0;
+        }
+        else if((a1[i]=='1')and(b1[i]=='1')and(val==0)){
+            res.append("0");
+        }
+        else if((a1[i]=='1')and(b1[i]=='1')and(val==1)){
+            res.append("1");
+            val=1;
+        }
+        else if((a1[i]=='0')and(b1[i]=='0')and(val==0)){
+            res.append("0");
+            val=0;
+        }
+        else if((a1[i]=='0')and(b1[i]=='0')and(val==1)){
+            res.append("1");
+            val=1;
+        }
+        else  if((a1[i]=='0')and(b1[i]=='1')and(val==0)){
+            res.append("1");
+            val=1;
+        }
+        else{
+            res.append("0");
+            val=1;
+        }
+        
+     }
+    }
+}
+     reverse(res.begin(),res.end());
+   
+    int p=1;
+   for( int i(res.length()-1);i>=0;i--){
+       if(res[i]=='1'){
+       res1+=p;}
+       p*=2;
+   }   
+    if((test==true)or(test1==true)){res1=-res1;}
+    return res1;
+    }
+};
