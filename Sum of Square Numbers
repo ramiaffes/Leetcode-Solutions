@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        map<long long int,bool>vis;
+        for(long long int i=0;i*i<=c;i++){
+            vis[i*i]=1;
+        }
+     for(long long int i=0;i*i<=c;i++){
+         if(vis[c-i*i]==1){
+             return true;
+         }
+     }
+        return false;
+    }
+};
