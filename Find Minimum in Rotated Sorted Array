@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+    if(nums.size()==1)return nums[0];
+    long long int i=0;
+    long long int j=nums.size()-1;
+    while((i<j)and(nums[i]>nums[j])){
+        i++;
+        j--;
+    }
+    if(nums[i]<nums[j]){
+        if(j<(nums.size()-1)){
+        return min(nums[i],nums[j+1]);}
+        else return nums[i];
+    }
+    else {
+        return (min(nums[i],nums[i+1]));
+    }
+  
+    return 0;
+    }
+};
