@@ -1,0 +1,28 @@
+map<pair<int,int>,long long int>dp;
+map<pair<int,int>,bool>vis;
+const int N=1e4;
+void transform(int target,int n,int k){
+    vis[make_pair(target,n)]=1;
+    dp[make_pair(target,n)]=0;
+    if((target==0)and(n==0)){
+        dp[make_pair(target,n)]=1;return;
+    }
+    else if(n==0){return;}
+    else{
+    for(int i=1;i<=k;i++){
+    if(vis[make_pair(target-i,n-1)]==0)
+    transform(target-i,n-1,k);
+    dp[make_pair(target,n)]+=dp[make_pair(target-i,n-1)]%1000000007;}
+    }
+
+ 
+}
+class Solution {
+public:
+    int numRollsToTarget(int n, int k, int target) {
+        vis.clear();
+        dp.clear();
+        transform(target,n,k);
+        return dp[make_pair(target,n)]%1000000007;
+    }
+};
