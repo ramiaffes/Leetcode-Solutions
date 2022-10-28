@@ -1,0 +1,35 @@
+class Solution {
+  int countPairs(List<int> deliciousness) {
+      var hashing={};
+      for(int i=0;i<deliciousness.length;i++){
+          if(hashing[deliciousness[i]]==null)hashing[deliciousness[i]]=1;
+        else  hashing[deliciousness[i]]++;
+      }
+     int p=1;
+      int res=0;
+      int varia =0;
+      int res1=0;
+      for(int i=0;i<deliciousness.length;i++){
+          p=1;
+      for(int j=0;j<=21;j++){
+          if(hashing[p-deliciousness[i]]!=null){
+              if(deliciousness[i]==(p-deliciousness[i])){
+                  if(hashing[p-deliciousness[i]] is int)
+                      varia=hashing[p-deliciousness[i]]-1;
+                  res+=(varia);
+              }
+             else{
+                 if(hashing[p-deliciousness[i]] is int)
+                      varia=hashing[p-deliciousness[i]];
+                 res+=varia;
+               
+                
+             }
+          }
+    p*=2;
+
+      }
+      }
+    return (res ~/ 2)%1000000007; 
+  }
+}
