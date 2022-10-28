@@ -1,0 +1,76 @@
+class Solution {
+public:
+    string originalDigits(string s) {
+        map<char,long long int>hashing;
+       for(int i=0;i<s.length();i++){
+           hashing[s[i]]++;
+       }
+    vector<long long int>vect(10);
+    if(hashing['z']!=0){
+        hashing['e']-=hashing['z'];
+        hashing['r']-=hashing['z'];
+        hashing['o']-=hashing['z'];
+        vect[0]=hashing['z'];
+    }
+    if(hashing['w']!=0){
+        hashing['t']-=hashing['w'];
+        hashing['o']-=hashing['w'];
+        vect[2]=hashing['w'];
+    }
+    if(hashing['g']!=0){
+    hashing['h']-=hashing['g'];
+    hashing['e']-=hashing['g'];
+    hashing['i']-=hashing['g'];
+    hashing['t']-=hashing['g'];
+    vect[8]=hashing['g'];
+}
+  if(hashing['h']!=0){
+        hashing['t']-=hashing['h'];
+        hashing['r']-=hashing['h'];
+        hashing['e']-=2*hashing['h'],
+        vect[3]=hashing['h'];
+    }
+if(hashing['u']!=0){
+    hashing['f']-=hashing['u'];
+    hashing['o']-=hashing['u'];
+    hashing['r']-=hashing['u'];
+    vect[4]=hashing['u'];
+}
+if(hashing['x']!=0){
+    hashing['s']-=hashing['x'];
+    hashing['i']-=hashing['x'];
+    vect[6]=hashing['x'];
+}
+if(hashing['s']!=0){
+    hashing['e']-=2*hashing['s'];
+    hashing['v']-=hashing['s'];
+    hashing['n']-=hashing['s'];
+    vect[7]=hashing['s'];
+}
+if(hashing['f']!=0){
+    hashing['i']-=hashing['f'];
+    hashing['v']-=hashing['f'];
+    hashing['e']-=hashing['f'];
+    vect[5]=hashing['f'];
+}
+if(hashing['o']!=0){
+    hashing['e']-=hashing['o'];
+    hashing['n']-=hashing['o'];
+    vect[1]=hashing['o'];
+}
+if(hashing['i']!=0){
+    hashing['n']-=2*hashing['i'];
+    hashing['e']-=hashing['i'];
+    vect[9]=hashing['i'];
+}
+string res;
+for(int i(0);i<=9;i++){
+    char var=i+'0';
+    string var1(vect[i],var);
+    res.append(var1);
+}
+
+
+    return res;
+    }
+};
