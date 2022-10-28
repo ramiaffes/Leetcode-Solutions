@@ -1,0 +1,35 @@
+class Trie {
+public:
+    Trie() {
+        
+    }
+    map<string,int>vis;
+    map<string,int>vis1;
+    void insert(string word) {
+        vis[word]++;
+    string s;
+    for(int i=0;i<word.length();i++){
+        string var(1,word[i]);
+        s.append(var);
+            vis1[s]=1;
+    }
+    }
+    
+    bool search(string word) {
+        if(vis[word]>=1)return true;
+        return false;
+    }
+    
+    bool startsWith(string prefix) {
+        if(vis1[prefix]>=1)return true;
+        return false;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
