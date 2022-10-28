@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool equalFrequency(string word) {
+        map<char,int>hashing;
+       for(int i=0;i<word.length();i++){
+           hashing[word[i]]++;
+       }
+    map<int,int>vis;
+    int ans=0;
+    int ans1=1e9;
+    for(auto v:hashing){
+        vis[hashing[v.first]]++;
+    ans=max(ans,hashing[v.first]);
+    ans1=min(ans1,hashing[v.first]);
+    }
+    if(((vis[ans]==1)and(vis[ans-1]==hashing.size()-1))==true)
+     return true;
+    if(ans1!=1)return false;
+    vis[ans1]--;
+    return vis[ans]==hashing.size()-1;
+    }
+};
