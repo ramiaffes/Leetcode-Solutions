@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int j=0;
+        int i=0;
+        int som=0;
+        set<int>res;
+        map<char,int>hashing;
+        map<char,int>hashing1;
+        for(int i=0;i<p.length();i++){
+            hashing1[p[i]]++;
+        }
+        while(j<s.length()){
+            hashing[s[j]]++;
+            while((i<=j)and(hashing[s[i]]>hashing1[s[i]])){
+                hashing[s[i]]--;
+                i++;
+            }
+            if(i>j){
+                j++;continue;
+            }
+        bool test=true;
+        for(int i=0;i<26;i++){
+            if(hashing[i+97]!=hashing1[i+97]){test=false;break;}
+        }
+        if(test==true)res.insert(i);
+           j++; 
+        }
+    vector<int>res1(res.begin(),res.end());
+    return res1;
+    }
+};
