@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int numTeams(vector<int>& rating) {
+        vector<vector<int>>dp(rating.size());
+        vector<vector<int>>dp1(rating.size());
+        vector<int>vect;
+        vect.push_back(rating[0]);
+        dp[0]=vect;
+        for(int i=1;i<rating.size();i++){
+            dp[i]=dp[i-1];
+            auto it=lower_bound(dp[i].begin(),dp[i].end(),rating[i]);
+            dp[i].insert(it,rating[i]);
+            
+        }
+    vector<int>vect1;
+    vect1.push_back(rating[rating.size()-1]);
+    dp1[rating.size()-1]=vect1;
+for(int i=rating.size()-2;i>=0;i--){
+    dp1[i]=dp1[i+1];
+    auto it=lower_bound(dp1[i].begin(),dp1[i].end(),rating[i]);
+            dp1[i].insert(it,rating[i]);
+}
+int som=0;
+    for(int i=0;i<rating.size();i++){
+        auto it=lower_bound(dp[i].begin(),dp[i].end(),rating[i]);
+        auto it1=upper_bound(dp1[i].begin(),dp1[i].end(),rating[i]);
+        som+=(it-dp[i].begin())*(dp1[i].size()-(it1-dp1[i].begin()));
+        auto it2=lower_bound(dp1[i].begin(),dp1[i].end(),rating[i]);
+        auto it3=upper_bound(dp[i].begin(),dp[i].end(),rating[i]);
+        som+=(dp[i].size()-(it3-dp[i].begin()))*(it2-dp1[i].begin());
+    }
+    return som;
+    }
+};
