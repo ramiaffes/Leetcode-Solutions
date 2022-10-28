@@ -1,0 +1,40 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+map<TreeNode*,int>vis;
+void dfs( TreeNode* u,int i,int som){
+    
+    if(u==NULL)return;  
+    if(u->val==i){som++;}
+    if((u->left==NULL)and(u->right==NULL)and(som%2==0)){
+    vis[u]++;}
+    dfs(u->left,i,som);
+    dfs(u->right,i,som); 
+ 
+   
+		}
+class Solution {
+public:
+    int pseudoPalindromicPaths (TreeNode* root) {
+        vis.clear();
+        for(int i=0;i<=9;i++){
+            dfs(root,i,0);   
+        }
+    int som1=0;
+    for(auto v:vis){
+        if(vis[v.first]>=9){
+            som1++;
+        }
+    }
+    
+    return som1;
+    }
+};
