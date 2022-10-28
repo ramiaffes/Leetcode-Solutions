@@ -1,0 +1,51 @@
+class Solution {
+  int smallestNumber(int num) {
+      bool test=false;
+      if(num==0)return 0;
+      if(num<0){
+          test=true;
+          
+      }
+      String str="";
+      if(test==false)
+      str=num.toString();
+      else str=(-num).toString();
+      String str1="";
+      if(test==false)
+      {
+      List<String>lis=str.split("");
+      lis.sort();
+      str=lis.join('');
+      String ans='9';
+      if(str[0]!='0')return int.parse(str);
+      for(int i=0;i<str.length;i++){
+          if(str[i]!='0'){
+              if(ans.compareTo(str[i])==1){
+                  ans=str[i];
+              }
+          }
+      } 
+    str1+=ans;
+          bool test2=false;
+      for(int i=1;i<str.length;i++){
+          if((str[i]==ans)&&(test2==false)){
+              str1+='0';
+              test2=true;
+
+          }
+         else{
+             str1+=str[i];
+            
+         }
+         
+      }}
+      else{
+          List<String>lis=str.split("");
+      lis.sort();
+      str=lis.reversed.join(''); 
+    str1='-'+str;
+      }
+      return int.parse(str1);
+      
+  }
+}
