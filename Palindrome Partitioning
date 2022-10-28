@@ -1,0 +1,55 @@
+class Solution {
+public:
+    vector<vector<string>> partition(string s) {
+        int n=s.length();
+         vector<bool>vect1(n);
+    vector<vector<bool>>dp(n,vect1);
+    for(long long int i(0);i<(n-1);i++){
+        if(s[i]==s[i+1]){
+            dp[i][i+1]=true;
+        }
+    }
+        for(long long int i(0);i<n;i++){
+            dp[i][i]=true;
+        }
+    for(long long int i(n-1);i>=0;i--){
+        for(long long int j(i);j<n;j++){
+            if((i!=j)and(i!=(j-1)))
+            dp[i][j]=(s[i]==s[j])and(dp[i+1][j-1]);
+        }
+    }
+       int tot=1<<n;
+	int val=0;
+bool test=true;
+vector<string>res1;
+set<vector<string>>res;
+vector<vector<string>>res2;
+vector<string>vect2(n);
+vector<vector<string>>dp1(n,vect2);
+for(long long int i(n-1);i>=0;i--){
+        for(long long int j(i);j<n;j++){
+            dp1[i][j]=s.substr(i,j-i+1);
+        }}
+	for(int mask=0;mask<tot;mask++){
+		val=0;
+        test=true;
+        res1.clear();
+		for(int i=0;i<n;i++){
+			int f=1<<i;
+			if(mask&f){
+				if(dp[val][i]==false){test=false;break;}
+                res1.push_back(dp1[val][i]);
+                val=i+1;
+				}
+			}
+        if(val<n){
+        if(dp[val][n-1]==false){test=false;}
+            res1.push_back(dp1[val][n-1]);
+        }
+        if((test==true)and(not(res1.empty())))res.insert(res1); }
+    for(auto v:res){
+        res2.push_back(v);
+    }
+    return res2;
+    }
+};
