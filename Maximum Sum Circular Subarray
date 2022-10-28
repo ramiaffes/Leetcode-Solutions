@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        vector<int>dp(nums.size());
+         vector<int>dp1(nums.size());
+        dp[0]=nums[0];
+        for(int i=1;i<nums.size();i++){
+            dp[i]=dp[i-1];
+            dp[i]+=nums[i];
+        }
+    dp1[nums.size()-1]=nums[nums.size()-1];
+    for(int i=nums.size()-2;i>=0;i--){
+        dp1[i]=dp1[i+1];
+        dp1[i]+=nums[i];
+    }
+vector<int>dp3(nums.size());
+dp3[0]=dp[0];
+for(int i=1;i<dp.size();i++){
+    dp3[i]=dp[i];
+    dp3[i]=max(dp3[i],dp3[i-1]);
+}
+ vector<int>dp4(nums.size());
+dp4[nums.size()-1]=dp1[nums.size()-1];
+for(int i=nums.size()-2;i>=0;i--){
+    dp4[i]=dp1[i];
+    dp4[i]=max(dp4[i],dp4[i+1]);
+}
+vector<int>dp5(nums.size());
+dp5[0]=dp[0];
+for(int i=1;i<nums.size();i++){
+    dp5[i]=dp[i];
+    dp5[i]=min(dp5[i],dp5[i-1]);
+}
+int ans=-1e5;
+for(int i=1;i<nums.size();i++){
+    ans=max(ans,dp4[i]+dp3[i-1]);
+}
+for(int i=1;i<nums.size();i++){
+ans=max(ans,dp[i]-dp5[i-1]);
+
+}
+ans=max(ans,dp4[0]);
+ans=max(ans,dp3[nums.size()-1]);
+return ans;
+
+
+
+    
+    }
+};
