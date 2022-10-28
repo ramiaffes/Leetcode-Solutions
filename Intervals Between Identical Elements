@@ -1,0 +1,52 @@
+class Solution {
+  List<int> getDistances(List<int> arr) {
+     var hashing={};
+     int som=0;
+      int var1=0;
+      int var2=0;
+      List<int> intervals=[];
+       for(int i=0;i<arr.length;i++){
+           intervals.add(0);
+       }
+     for(int i=0;i<arr.length;i++){
+         if(hashing[arr[i]]==null)hashing[arr[i]]=[i];
+         else hashing[arr[i]].add(i);
+     }
+    for(var key in hashing.keys){
+    hashing[key].sort();
+    }
+     int var3=1;
+    for(var key in hashing.keys){
+        som=0;
+        var1=0;
+        var2=0;
+        var dp=[];
+        for(int i=0;i<(hashing[key].length);i++){
+            dp.add(0);
+        }
+        var dp1=[];
+        for(int i=0;i<(hashing[key].length);i++){
+            dp1.add(0);
+        }
+        dp[0]=0;
+        for(int i=1;i<(hashing[key].length);i++){
+            if(hashing[key][i-1] is int)var1=hashing[key][i-1];
+            if(hashing[key][i] is int)var2=hashing[key][i];
+            dp[i]=dp[i-1];
+            dp[i]+=(i)*(var2-var1);
+        }
+    dp1[hashing[key].length-1]=0;
+    for(int i=(hashing[key].length-2);i>=0;i--){
+            if(hashing[key][i+1] is int)var1=hashing[key][i+1];
+            if(hashing[key][i] is int)var2=hashing[key][i];
+            dp1[i]=dp1[i+1];
+            dp1[i]+=(hashing[key].length-i-1)*(var1-var2);
+        }
+    for(int i=0;i<(hashing[key].length);i++){
+        if(hashing[key][i] is int)var2=hashing[key][i];
+        intervals[var2]=dp1[i]+dp[i];
+    }
+    }
+    return intervals;
+  }
+}
