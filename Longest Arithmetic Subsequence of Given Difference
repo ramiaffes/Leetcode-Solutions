@@ -1,0 +1,21 @@
+class Solution {
+public: 
+    int longestSubsequence(vector<int>& arr, int difference) {
+        map<int,bool>vis;
+        map<int,int>dp;
+        for(int i=0;i<arr.size();i++){
+            if(vis[arr[i]-difference]==1){
+                dp[arr[i]]=dp[arr[i]-difference]+1;
+            }
+        else{
+            dp[arr[i]]=1;
+        }
+        vis[arr[i]]=1;
+        }
+    int ans=0;
+    for(auto v:arr){
+        ans=max(ans,dp[v]);
+    }
+    return ans;
+    }
+};
