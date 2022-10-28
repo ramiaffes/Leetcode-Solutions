@@ -1,0 +1,24 @@
+class Solution {
+  bool containsNearbyDuplicate(List<int> nums, int k) {
+      var vis={};
+      for(int i=0;i<nums.length;i++){
+          if(vis.containsKey(nums[i])==false){
+              vis[nums[i]]=[i];
+          }
+         else vis[nums[i]].add(i);
+      }
+    for (var key in vis.keys){
+        vis[key].sort();
+        
+    }
+     for (var key in vis.keys){
+         for(int i=0;i<(vis[key].length-1);i++){
+             if((vis[key][i+1]-vis[key][i])<=k){
+                 return true;
+             }
+         }
+     } 
+     return false; 
+
+  }
+}
