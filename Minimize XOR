@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int minimizeXor(int num1, int num2) {
+        vector<int>res1;
+        vector<int>res2;
+        while(num1!=0){
+            res1.push_back(num1%2);
+            num1/=2;
+        }
+     while(num2!=0){
+            res2.push_back(num2%2);
+            num2/=2;
+        }
+    int ans=max(res1.size(),res2.size());
+    while(res2.size()<ans){
+        res2.push_back(0);
+    }
+      while(res1.size()<ans){
+        res1.push_back(0);
+    }
+    reverse(res1.begin(),res1.end());
+    reverse(res2.begin(),res2.end());
+    int som=0;
+    for(int i=0;i<res2.size();i++){
+        if(res2[i]==1){som++;}
+    }
+    vector<int>res3(ans);
+    for(int i=0;i<res1.size();i++){
+        if((res1[i]==1)and(som>0)){
+            res3[i]=1;
+            som--;
+        }
+    }
+    for(int i=res1.size()-1;i>=0;i--){
+        if((res1[i]==0)and(som>0)){
+            res3[i]=1;som--;
+        }
+    }
+    int p=1;
+    int res=0;
+    for(int i=ans-1;i>=0;i--){
+        if(res3[i]==1)
+        res+=p;
+        p*=2;
+    }
+    return res;
+    
+    }
+};
