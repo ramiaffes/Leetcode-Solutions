@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int gcd(int a,int b){
+        if(b==0)return a;
+        return gcd(b,a%b);
+    }
+    int subarrayGCD(vector<int>& nums, int k) {
+        int som2=0;
+        for(int i=0;i<nums.size();i++){
+            int j=i;
+            int val=nums[j];
+            while((j>=0)and(val%k==0)){
+                if(val==k)som2++;
+                j--;
+                if(j>=0)
+                val=gcd(val,nums[j]);
+            }
+        }
+    return som2;
+    }
+};
