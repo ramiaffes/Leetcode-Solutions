@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int averageValue(vector<int>& nums) {
+        int som=0;
+        int som1=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]%6==0){som+=nums[i];som1++;}
+        }
+    if(som1==0)return 0;
+    return som/som1;
+    }
+};
