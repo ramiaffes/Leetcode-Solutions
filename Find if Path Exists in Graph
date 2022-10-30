@@ -1,0 +1,31 @@
+map<long long int,long long int> parent;
+void make_set(long long int  v) {
+    parent[v] = v;
+}
+ 
+long long int find_set(long long int v) {
+    if (v == parent[v])
+        return v;
+    return find_set(parent[v]);
+}
+ 
+void union_sets(long long int a, long long int  b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b)
+        parent[b] = a;
+}
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        for(int i=0;i<=(n-1);i++){
+            make_set(i);
+        }
+        for(int i=0;i<edges.size();i++){
+            union_sets(edges[i][0],edges[i][1]);
+        }
+    int val=find_set(source);
+    int val1=find_set(destination);
+    return (val==val1);
+    }
+};
