@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<vector<string>> mostPopularCreator(vector<string>& creators, vector<string>& ids, vector<int>& views) {
+        map<string,long long int>hashing;
+        int n=creators.size();
+        for(int i=0;i<creators.size();i++){
+            hashing[creators[i]]+=views[i];
+        }
+   long long  int ans=0;
+    for(auto v:hashing){
+        ans=max(ans,v.second);
+    }
+    map<string,bool>vis;
+    for(auto v:hashing){
+        if(v.second==ans){
+            vis[v.first]=1;
+        }
+    }
+        map<string,string>hashing1;
+        map<string,long long int>ans1;
+        
+        for(int i=0;i<creators.size();i++){
+        if(vis[creators[i]]){
+            ans1[creators[i]]=-1;
+        }}
+    for(int i=0;i<creators.size();i++){
+        if(vis[creators[i]]){
+            if(ans1[creators[i]]==views[i]){
+            hashing1[creators[i]]=min(hashing1[creators[i]],ids[i]);}
+            else if(ans1[creators[i]]<views[i]){
+                 hashing1[creators[i]]=ids[i];
+                ans1[creators[i]]=views[i];
+            }
+        }
+    }
+vector<vector<string>>res;
+    for(auto v:hashing1){
+        vector<string>res2(2);
+        res2[0]=v.first;
+        res2[1]=v.second;
+        res.push_back(res2);
+    }
+    return res;
+    }
+};
