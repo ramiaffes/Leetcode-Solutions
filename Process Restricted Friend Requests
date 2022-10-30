@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<bool> friendRequests(int n, vector<vector<int>>& restrictions, vector<vector<int>>& requests) {
+        vector<bool>results(requests.size());
+        map<int,int>hashing;
+        for(int i=0;i<n;i++){
+            hashing[i]=i;
+        }
+    for(int i=0;i<requests.size();i++){
+        int val=hashing[requests[i][0]];
+        int val1=hashing[requests[i][1]];
+        bool test=true;
+        for(int j=0;j<restrictions.size();j++){
+            if((hashing[restrictions[j][0]]==val)and(hashing[restrictions[j][1]]==val1)){
+                test=false;break;
+            }
+             if((hashing[restrictions[j][0]]==val1)and(hashing[restrictions[j][1]]==val)){
+                test=false;break;
+            }
+        }
+    results[i]=test;
+    if(test==true){
+        for(int i=0;i<n;i++){
+            if(hashing[i]==val1){
+                hashing[i]=val;
+            }
+        }
+    }
+    }
+
+    return results;
+    }
+};
