@@ -1,0 +1,51 @@
+map< int,vector< int>>adj;
+map< int,bool>vis;
+int ans=0;
+vector<int>res;
+void dfs( int u){
+	if(vis[u]==1)return;
+	vis[u]=1;
+    ans=max(ans,u);
+    res.push_back(u);
+	for(auto v:adj[u]){
+		if(vis[v]){
+			continue;}
+		dfs(v);}}
+class Solution {
+public:
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        map<int,int>hashing1;
+        res.clear();
+        ans=0;
+        vis.clear();
+        adj.clear();
+        for(int i=0;i<pairs.size();i++){
+            adj[pairs[i][0]].push_back(pairs[i][1]);
+            adj[pairs[i][1]].push_back(pairs[i][0]);
+        }
+    for(int i=0;i<s.length();i++){
+        if(vis[i]==0){dfs(i);
+        for(auto v:res){
+            hashing1[v]=ans;
+        }
+        res.clear();
+        ans=0;}
+    }
+    map<int,vector<char>>hashing;
+    for(int i=0;i<s.length();i++){
+        hashing[hashing1[i]].push_back(s[i]);
+    }
+for(auto v:hashing){
+    sort(hashing[v.first].begin(),hashing[v.first].end());
+}
+
+map<int,int>index;
+string s1(s.length(),' ');
+for(int i=0;i<s.length();i++){
+    int val=hashing1[i];
+    s1[i]=hashing[val][index[val]];
+    index[val]++;
+}
+return s1;
+    }
+};
