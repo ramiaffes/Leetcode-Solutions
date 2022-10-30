@@ -1,0 +1,59 @@
+class MyHashMap {
+public:
+    MyHashMap() {
+        
+    }
+     ListNode * head=NULL;
+    void put(int key, int value) {
+          ListNode * valeur=new ListNode();
+        valeur->val=key;
+        ListNode * valeur1=new ListNode();
+        valeur1->val=value;
+        if(head==NULL){head=valeur;head->next=valeur1; }
+        else{ListNode * curr=head;
+             while(curr->next->next!=NULL){
+                if(curr->val==key)break;
+             curr=curr->next;
+             curr=curr->next;}
+             if((curr->next->next==NULL)and(curr->val!=key)){
+                 curr->next->next=valeur;
+                 curr->next->next->next=valeur1;
+                 }
+        else if(curr->val==key){
+            curr->next->val=value;
+        }
+    }
+    }
+    int get(int key) {
+        ListNode * curr=head;
+         curr=head;
+        if(head==NULL)return -1;
+         while(curr!=NULL){ 
+                if(curr->val==key)return curr->next->val;
+             curr=curr->next->next;
+             }
+        return -1;
+    }
+    
+    void remove(int key) {
+        if(head==NULL)return;
+        if(head->val==key){
+            head=head->next->next;return;
+        }
+       ListNode * curr=head;
+         while((curr->next->next!=NULL)and(curr->next->next->val!=key)){
+             curr=curr->next;
+             curr=curr->next;} 
+        if(curr->next->next!=NULL){
+            curr->next->next=curr->next->next->next->next;
+        }
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
