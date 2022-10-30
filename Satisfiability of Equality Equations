@@ -1,0 +1,40 @@
+map<char,char> parent;
+void make_set(char  v) {
+    parent[v] = v;
+}
+ 
+char find_set(char v) {
+    if (v == parent[v])
+        return v;
+    return find_set(parent[v]);
+}
+ 
+void union_sets(char a, char  b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b)
+        parent[b] = a;
+}
+class Solution {
+public:
+    bool equationsPossible(vector<string>& equations) {
+        for(int i=0;i<equations.size();i++){
+            make_set(equations[i][0]);
+            make_set(equations[i][3]);
+        }
+        for(int i=0;i<equations.size();i++){
+            if(equations[i][1]=='='){
+                union_sets(equations[i][0],equations[i][3]);
+            }
+        }
+    bool test=true;
+    for(int i=0;i<equations.size();i++){
+        if(equations[i][1]=='!'){
+            if(find_set(equations[i][0])==find_set(equations[i][3])){
+                test=false;break;
+            }
+        }
+    }
+    return test;
+    }
+};
