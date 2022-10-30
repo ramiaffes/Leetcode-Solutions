@@ -1,0 +1,47 @@
+map<string,string> parent;
+void make_set(string v) {
+    parent[v] = v;
+}
+ 
+string find_set(string v) {
+    if (v == parent[v])
+        return v;
+    return find_set(parent[v]);
+}
+ 
+void union_sets(string a, string  b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b)
+        parent[b] = a;
+}
+class Solution {
+public:
+    int numSimilarGroups(vector<string>& strs) {
+        for(int i=0;i<strs.size();i++){
+            make_set(strs[i]);
+        }
+    for(int i=0;i<strs.size();i++){
+        for(int j=0;j<strs.size();j++){
+            vector<pair<char,char>>res;
+            for(int d=0;d<strs[i].length();d++){
+                if(strs[i][d]!=strs[j][d]){
+                    res.push_back(make_pair(strs[i][d],strs[j][d]));
+                    if(res.size()>=3)break;
+                }
+            }
+        if((res.size()==2)and(res[0].first==res[1].second)and(res[0].second==res[1].first)){
+            union_sets(strs[i],strs[j]);
+        }
+        }
+    }
+    int som=0;
+    set<string>se;
+    for(int i=0;i<strs.size();i++){
+        se.insert(strs[i]);
+        
+    }
+    for(auto v:se){if(parent[v]==v)som++;}
+    return som;
+    }
+};
