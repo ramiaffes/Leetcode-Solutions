@@ -1,0 +1,13 @@
+int factorial(int n){
+    if(n==0)return 1;
+    return factorial(n-1)*n;
+}
+class Solution {
+public:
+    int countNumbersWithUniqueDigits(int n) {
+        int som=0;
+        for(int i=1;i<=min(10,n);i++){
+        som+=factorial(10)/factorial(10-i)-(factorial(9)/factorial(9-i+1));}
+        return som+1;
+    }
+};
