@@ -1,0 +1,26 @@
+map<vector<int>,set<vector<int>>>dp;
+map<int,int>hashing;
+void func(vector<int>nums){
+    if(nums.size()==1){vector<int>se;se.push_back(nums[0]);dp[nums].insert(se);return;}
+    for(int i=0;i<nums.size();i++){
+        vector<int>nums1=nums;
+        int val=nums[i];
+        nums1.erase(i+nums1.begin());
+        if(dp[nums1].empty())func(nums1);
+        for(auto v:dp[nums1]){
+            vector<int>v1=v;
+            v1.push_back(val);
+            dp[nums].insert(v1);
+        }
+    }
+    }
+
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        dp.clear();
+        func(nums);
+        vector<vector<int>>res(dp[nums].begin(),dp[nums].end());
+return res;
+    }
+};
