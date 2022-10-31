@@ -1,0 +1,49 @@
+map< int,set< int>>adj;
+map< int,bool>vis;
+vector<int>res;
+void dfs( int u){
+	if(vis[u]==1)return;
+	vis[u]=1;
+    res.push_back(u);
+	for(auto v:adj[u]){
+		if(vis[v]){
+			continue;}
+		dfs(v);}}
+class Solution {
+public:
+    vector<bool> areConnected(int n, int threshold, vector<vector<int>>& queries) {
+        adj.clear();
+        vis.clear();
+        res.clear();
+        for(int i=1;i<=n;i++){
+            for(int j=1;j*j<=i;j++){
+                if(i%j==0){
+                if(j>threshold){
+                adj[j].insert(i);
+                adj[i].insert(j);}
+                if((i/j)>threshold){
+                adj[i/j].insert(i);
+               
+                adj[i].insert(i/j);}
+                }
+            }
+        }
+    int val=0;
+    map<int,int>hashing;
+    for(int i=1;i<=n;i++){
+        if(vis[i]==0){
+            dfs(i);
+            for(auto v:res){
+                hashing[v]=val;
+            }
+        val++;
+        res.clear();
+        }
+    }
+    vector<bool>answers(queries.size());
+    for(int i=0;i<queries.size();i++){
+        answers[i]=(hashing[queries[i][0]]==hashing[queries[i][1]]);
+    }
+    return answers;
+    }
+};
