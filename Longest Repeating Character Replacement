@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        set<char>se;
+        for(int i=0;i<s.length();i++){
+            se.insert(s[i]);
+        }
+    int ans=1;
+    for(auto v:se){
+     int som=0;
+	int j=0;
+	 int i=0;
+    int n=s.length();
+	while(j<n){
+	 if(s[j]!=v){
+		 som++;}
+	if(som<=k){
+		ans=max(ans,j-i+1);}
+	else if(som>k){
+		while((i<=j)and(som>k)){
+			if(s[i]!=v)som--;
+			i++;
+			}
+		if(i>j){
+			j++;som=0;continue;}}
+	j++;}}
+    return ans;
+    }
+};
