@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        map<int,int>hashing;
+        int som=0;
+        int som1=0;
+        for(int i=0;i<nums.size();i++){som+=nums[i];
+            som1+=hashing[som-k];
+            if((som-k)==0)som1++;
+            hashing[som]++;
+        }
+    return som1;
+    }
+};
