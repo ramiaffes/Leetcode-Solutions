@@ -1,0 +1,14 @@
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        map<int,int>hashing;
+        for(int i=0;i<nums.size();i++){
+            hashing[nums[i]]++;
+        }
+    vector<int>res;
+    for(auto v:hashing){
+        if(hashing[v.first]==2)res.push_back(v.first);
+    }
+    return res;
+    }
+};
