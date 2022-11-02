@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minSwaps(string s) {
+    deque<char>vect;
+    int som1=0;
+    for(int i=0;i<s.length();i++){
+        if((s[i]==']')and(vect.empty())){
+            s[i]='[';
+            vect.push_back(s[i]);
+        }
+    else if(s[i]==']'){vect.pop_back();}
+    else{
+        vect.push_back(s[i]);
+    }
+    }
+return vect.size()/2;
+
+    }
+};
