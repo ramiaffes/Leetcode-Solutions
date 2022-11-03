@@ -1,0 +1,7 @@
+  map<int,bool>vis;
+        for(int i=0;i<nums.size();i++){
+            vis[nums[i]]=1;
+        }
+    int val=1;
+    while(vis[val]==1)val++;
+        return val;
