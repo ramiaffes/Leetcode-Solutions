@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        deque<int>vect;
+        map<int,bool>vis;
+        int som=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='('){
+                vect.push_back(i);
+            }
+            else if(s[i]==')'){
+                if(vect.empty())vis[i]=1;
+               else  vect.pop_back();
+            }
+        }
+    for(auto v:vect){
+        vis[v]=1;
+    }
+    for(int i=s.length()-1;i>=0;i--){
+        if(vis[i]==1){
+            s.erase(i,1);
+        }
+    }
+    return s;
+    }
+};
