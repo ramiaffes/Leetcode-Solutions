@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool checkValidString(string s) {
+        deque<int>vect;
+        deque<int>vect1;
+        map<int,bool>vis;
+        int som=0;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='('){
+                vect.push_back(i);
+            }
+            else if(s[i]==')'){
+                if(vect.empty()){if(vect1.empty())return false;vect1.pop_back();}
+               else  vect.pop_back();
+            }
+        else if(s[i]=='*'){
+             vect1.push_back(i);
+        }
+}
+while((vect.size()>0)and(vect1.size()>0)and(vect1.back()>vect.back())){
+        vect1.pop_back();
+        vect.pop_back();
+    }
+
+if(vect.size()==0)return true;
+else return false;
+    }
+};
