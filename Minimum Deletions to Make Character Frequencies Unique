@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minDeletions(string s) {
+        map<char,int>hashing;
+        for(int i=0;i<s.length();i++){
+            hashing[s[i]]++;
+        }
+        vector<int>res;
+        for(auto v:hashing){
+            if(hashing[v.first]!=0){
+                res.push_back(hashing[v.first]);
+            }
+        }
+    sort(res.begin(),res.end());
+    map<int,bool>vis;
+    int som=0;
+    for(int i=0;i<res.size();i++){
+        while((res[i]>0)and(vis[res[i]]==1)){
+            som++;
+            res[i]--;
+        }
+        vis[res[i]]=1;
+    }
+    return som;
+    }
+};
