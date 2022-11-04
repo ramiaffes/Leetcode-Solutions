@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        set<int>se;
+        map<int,int>hashing;
+        for(int i=0;i<nums.size();i++){
+            se.insert(nums[i]);
+            hashing[nums[i]]++;
+        }
+    int som1=0;
+    for(auto v:se){
+        if((som1+hashing[v])>(nums.size()-k)){
+            return v;
+        }
+        som1+=hashing[v];
+    }
+return som1;
+    
+    }
+};
