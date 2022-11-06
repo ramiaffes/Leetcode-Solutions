@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        vector<int>dp(s.length());
+        vector<int>dp1(s.length());
+        dp[0]=(s[0]=='b');
+        for(int i=1;i<s.length();i++){
+            dp[i]=dp[i-1];
+            if(s[i]=='b'){
+                dp[i]++;
+            }
+        }
+        dp1[s.length()-1]=(s[s.length()-1]=='a'); 
+    for(int i=s.length()-2;i>=0;i--){
+        dp1[i]=dp1[i+1];
+         if(s[i]=='a'){
+                dp1[i]++;
+            }
+    }
+    int ans=1e9;
+    for(int i=0;i<(s.length()-1);i++){
+        ans=min(ans,dp[i]+dp1[i+1]);
+    }
+ans=min(ans,dp1[0]);
+ans=min(ans,dp[s.length()-1]);
+return ans;
+    }
+};
