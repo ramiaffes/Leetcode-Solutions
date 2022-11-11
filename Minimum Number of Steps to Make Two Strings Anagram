@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+        map<char,int>hashing;
+        map<char,int>hashing1;
+        for(int i=0;i<s.length();i++){
+            hashing[s[i]]++;
+        }
+         for(int i=0;i<t.length();i++){
+            hashing1[t[i]]++;
+        }
+    int som=0;
+    for(int i=0;i<26;i++){
+        if(hashing[i+97]<hashing1[i+97]){
+            som+=hashing1[i+97]-hashing[i+97];
+        }
+    }
+    return som;
+    }
+};
