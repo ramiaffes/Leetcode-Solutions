@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int longestIdealString(string s, int k) {
+        map<char,int>dp;
+        for(int i=0;i<s.length();i++){
+            int val=dp[s[i]];
+            for(int j=0;j<26;j++){
+                if(j+97==s[i])continue;
+                if(abs(s[i]-97-j)<=k){
+                    dp[s[i]]=max(dp[s[i]],dp[j+97]+1);
+                }
+            }
+        dp[s[i]]=max(dp[s[i]],val+1);
+        }
+    int ans=0;
+    for(int j=0;j<26;j++){
+        ans=max(ans,dp[j+97]);
+    }
+    return ans;
+   }
+};
