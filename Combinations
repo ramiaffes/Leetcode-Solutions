@@ -1,0 +1,27 @@
+vector<vector<int>>res;
+map<char,vector<char>>adj;
+void dfs(int u,vector<int> res1,int k){
+    res1.push_back(u);
+    if(res1.size()==k){
+        res.push_back(res1);return;
+    }
+    for(auto v:adj[u]){
+        dfs(v,res1,k);
+    }
+}
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        adj.clear();
+        res.clear();
+        for(int i=1;i<n;i++){
+            for(int j=i+1;j<=n;j++){
+                adj[i].push_back(j);
+            }
+        }
+        for(int i=1;i<=n;i++){
+            vector<int>res1;
+        dfs(i,res1,k);}
+        return res;
+    }
+};
