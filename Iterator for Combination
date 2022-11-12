@@ -1,0 +1,47 @@
+vector<string>res;
+map<char,vector<char>>adj;
+void dfs(char u,string res1,int combinationLength){
+    string vale(1,u);
+    res1.append(vale);
+    if(res1.length()==combinationLength){
+        res.push_back(res1);return;
+    }
+    for(auto v:adj[u]){
+        dfs(v,res1,combinationLength);
+    }
+}
+class CombinationIterator {
+public: int val=0;
+
+    CombinationIterator(string characters, int combinationLength) {
+        res.clear();
+        adj.clear();
+        for(int i=0;i<(characters.length()-1);i++){
+            for(int j=i+1;j<characters.length();j++){
+                adj[characters[i]].push_back(characters[j]);
+            }
+        }
+    for(int i=0;i<characters.length();i++){
+        string res1="";
+        dfs(characters[i],res1,combinationLength);
+    }
+
+    }
+    
+    string next() {
+        string val2=res[val];
+        val++;
+        return val2;
+    }
+    
+    bool hasNext() {
+        return (val<res.size());
+    }
+};
+
+/**
+ * Your CombinationIterator object will be instantiated and called as such:
+ * CombinationIterator* obj = new CombinationIterator(characters, combinationLength);
+ * string param_1 = obj->next();
+ * bool param_2 = obj->hasNext();
+ */
