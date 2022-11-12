@@ -1,0 +1,96 @@
+class Solution {
+public:
+    int maxSumTwoNoOverlap(vector<int>& nums, int firstLen, int secondLen) {
+        vector<int>dp(nums.size());
+        int som=0;
+        int ans=0;
+        for(int i=0;i<firstLen;i++){
+            som+=nums[i];
+        }
+    for(int i=0;i<nums.size();i++){
+        if(i<(firstLen-1)){
+            dp[i]=0;
+        }
+    else{
+        if(i==0)dp[i]=som;
+        else dp[i]=max(dp[i-1],som);
+        som-=nums[i-firstLen+1];
+        if(i<(nums.size()-1))
+        som+=nums[i+1];
+        else break;
+    }
+    }
+    vector<int>dp1(nums.size());
+        som=0;
+        for(int i=0;i<secondLen;i++){
+            som+=nums[i];
+        }
+    for(int i=0;i<nums.size();i++){
+        if(i<(secondLen-1)){
+            dp1[i]=0;
+        }
+    else{
+        if(i==0)dp1[i]=som;
+        else dp1[i]=max(dp1[i-1],som);
+        som-=nums[i-secondLen+1];
+        if(i<(nums.size()-1))
+        som+=nums[i+1];
+        else break;
+    }
+    }
+    reverse(nums.begin(),nums.end());
+    vector<int>dp2(nums.size());
+     som=0;
+        for(int i=0;i<secondLen;i++){
+            som+=nums[i];
+        }
+    for(int i=0;i<nums.size();i++){
+        if(i<(secondLen-1)){
+            dp2[i]=0;
+        }
+    else{
+        if(i==0)dp2[i]=som;
+        else dp2[i]=max(dp2[i-1],som);
+        som-=nums[i-secondLen+1];
+        if(i<(nums.size()-1))
+        som+=nums[i+1];
+        else break;
+    }
+    }
+    
+vector<int>dp3(nums.size());
+        som=0;
+        for(int i=0;i<firstLen;i++){
+            som+=nums[i];
+        }
+    for(int i=0;i<nums.size();i++){
+        if(i<(firstLen-1)){
+            dp3[i]=0;
+        }
+    else{
+        if(i==0)dp3[i]=som;
+        else dp3[i]=max(dp3[i-1],som);
+        som-=nums[i-firstLen+1];
+        if(i<(nums.size()-1))
+        som+=nums[i+1];
+        else break;
+    }
+    }
+  int valeur=nums.size();
+    for(int i=0;i<nums.size();i++){
+        if(((valeur-i-2)>=0)and((i+2)>0)){
+        if(dp2[valeur-i-2]==0)continue;
+        if(dp[i]==0)continue;
+        ans=max(ans,dp[i]+dp2[valeur-i-2]);  }
+    }  
+    
+ for(int i=0;i<nums.size();i++){
+     if(((valeur-i-2)>=0)and((i+2)>0)){
+     if(dp3[valeur-i-2]==0)continue;
+        if(dp1[i]==0)continue;
+        ans=max(ans,dp1[i]+dp3[valeur-i-2]);}
+    }
+
+return ans;
+    }
+};
