@@ -1,0 +1,31 @@
+vector<vector<int>>res;
+map<char,vector<char>>adj;
+
+void dfs(int u,vector<int> res1,int res2,int target){
+    res2+=u;
+    res1.push_back(u);
+    if(res2==target){
+        res.push_back(res1);return;
+    }
+    else if(res2>target)return;
+    for(auto v:adj[u]){
+        dfs(v,res1,res2,target);
+    }
+}
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+       adj.clear();
+        res.clear();
+        int n=candidates.size();
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                adj[candidates[i]].push_back(candidates[j]);
+            }
+        }
+    for(int i=0;i<n;i++){
+            vector<int>res1;
+        dfs(candidates[i],res1,0,target);}
+    return res;
+    }
+};
