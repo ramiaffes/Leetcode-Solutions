@@ -1,0 +1,36 @@
+set<vector<int>>res;
+map<int,vector<int>>adj;
+
+void dfs(int u,vector<int> res1,int res2,int target,int k){
+    res2+=u;
+    res1.push_back(u);
+   if(res1.size()>k)return;
+    if((res2==target)and(res1.size()==k)){
+        sort(res1.begin(),res1.end());
+        res.insert(res1);return;
+    }
+    else if(res2>target)return;
+    for(auto v:adj[u]){
+        dfs(v,res1,res2,target,k);
+    }
+}
+class Solution {
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        adj.clear();
+        res.clear();
+           for(int i=0;i<(9-1);i++){
+            for(int j=i+1;j<9;j++){
+                adj[i+1].push_back(j+1);
+            }
+        }
+    for(int i=0;i<9;i++){
+            vector<int>res1;
+        dfs(i+1,res1,0,n,k);}
+    vector<vector<int>>res2;
+    for(auto v:res){
+        res2.push_back(v);
+    }
+    return res2;
+    }
+};
