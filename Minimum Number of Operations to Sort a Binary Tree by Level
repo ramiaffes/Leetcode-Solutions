@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+map<int,vector<int>>res;
+void dfs( TreeNode* u,int som){
+    if(u==NULL)return;
+    res[som].push_back(u->val); 
+    dfs(u->left,som+1);
+    dfs(u->right,som+1);
+  
+		}
+class Solution {
+public:
+    int minimumOperations(TreeNode* root) {
+        int som=0;
+        res.clear();
+        dfs(root,0);
+        for(auto v:res){
+            map<int,int>hashing;
+            vector<int>res1=res[v.first];
+            sort(res1.begin(),res1.end());
+            for(int i=0;i<res[v.first].size();i++){
+                hashing[res[v.first][i]]=i;
+            }
+             for(int i=0;i<res[v.first].size();i++){
+                 if(res1[i]!=res[v.first][i]){
+                     int val=hashing[res1[i]];
+                     int val2=res[v.first][i];
+                     swap(res[v.first][i],res[v.first][val]);
+                     som++;
+                     hashing[val2]=val;
+                 }
+            }
+        
+            
+            
+        }
+        return som;
+    }
+};
