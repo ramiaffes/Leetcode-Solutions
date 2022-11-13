@@ -1,0 +1,39 @@
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        map< int,long long int>hashing;
+        map< int,long long int>hashing1;
+        long long int ans=0;
+       long long  int som=0;
+        map<int,bool>vis;
+        for(int i=0;i<k;i++){
+            if((vis[nums[i]]==1)and(hashing1[hashing[nums[i]]]!=0)){
+                hashing1[hashing[nums[i]]]--;
+            }
+            vis[nums[i]]=1;
+            hashing[nums[i]]++;
+            som+=nums[i];
+            hashing1[hashing[nums[i]]]++;
+        }
+    for(int i=0;i<nums.size();i++){
+        if((hashing1[1]+hashing1[0])==hashing.size()){
+            ans=max(ans,som);
+        }
+        som-=nums[i];
+        if((i+k)<nums.size())
+        som+=nums[i+k];
+        
+        else break;
+        hashing1[hashing[nums[i]]]--;
+        hashing[nums[i]]--;
+        hashing1[hashing[nums[i]]]++;
+        if((vis[nums[i+k]]==1)and(hashing1[hashing[nums[i+k]]]!=0)){
+          hashing1[hashing[nums[i+k]]]--;}vis[nums[i+k]]=1;
+        hashing[nums[i+k]]++;
+        hashing1[hashing[nums[i+k]]]++;
+
+
+    }
+    return ans;
+    }
+};
