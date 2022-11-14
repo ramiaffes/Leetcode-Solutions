@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> pancakeSort(vector<int>& arr) {
+        map<int,int>hashing;
+      for(int i=0;i<arr.size();i++){
+          hashing[arr[i]]=i;
+      }
+    vector<int>res;
+    int val=arr.size();
+    for(int i=arr.size();i>=1;i--){
+        res.push_back(hashing[i]+1);
+        int value=hashing[i];
+        for(int j=0;j<=value;j++){
+            hashing[arr[j]]=value-hashing[arr[j]];
+        }
+         reverse(arr.begin(),arr.begin()+value+1) ;
+    
+        if(val!=0){
+        res.push_back(val);
+        for(int j=0;j<=(val-1);j++){
+            hashing[arr[j]]=val-1-hashing[arr[j]];
+           
+            
+        }
+        reverse(arr.begin(),arr.begin()+val) ;
+           val--;}
+        
+    }
+
+return res;
+    }
+};
