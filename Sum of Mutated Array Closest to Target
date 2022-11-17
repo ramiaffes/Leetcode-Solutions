@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int findBestValue(vector<int>& arr, int target) {
+        sort(arr.begin(),arr.end());
+        int ans=1e9;
+        int res=0;
+        vector<int>dp(arr.size());
+        int n=arr.size();
+        dp[0]=arr[0];
+        for(int i=1;i<arr.size();i++){
+            dp[i]=dp[i-1];
+            dp[i]+=arr[i];
+        }
+        for(int i=0;i<=target;i++){
+        auto it=upper_bound(arr.begin(),arr.end(),i);
+        if(it==arr.end()){
+              if(ans>abs(dp[n-1]-target)){
+            int val11=abs(dp[n-1]-target);
+            ans=min(ans,val11);
+            res=i;
+        }
+        }
+        else if(it==arr.begin()){
+             if(ans>abs(n*i-target)){
+            int val11=abs(n*i-target);
+            ans=min(ans,val11);
+            res=i;
+        }
+        }
+       else if(ans>abs(dp[it-arr.begin()-1]+(n-(it-arr.begin()))*i-target)){
+            int val11=abs(dp[it-arr.begin()-1]+(n-(it-arr.begin()))*i-target);
+           
+            ans=min(ans,val11); 
+            res=i;
+        }
+        }
+    return res;
+    }
+};
