@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> maximumBeauty(vector<vector<int>>& items, vector<int>& queries) {
+        vector<int>answers(queries.size());
+        sort(items.begin(),items.end());
+        vector<int>res(items.size());
+        for(int i=0;i<res.size();i++){
+            res[i]=items[i][0];
+        }
+        vector<int>dp(items.size());
+        dp[0]=items[0][1];
+        for(int i=1;i<items.size();i++){
+            dp[i]=dp[i-1];
+            dp[i]=max(dp[i],items[i][1]);
+        }
+        for(int i=0;i<queries.size();i++){
+            auto it=upper_bound(res.begin(),res.end(),queries[i]);
+            if(it==res.begin())answers[i]=0;
+            else answers[i]=dp[it-res.begin()-1];
+        }
+    return answers;
+    
+    }
+};
