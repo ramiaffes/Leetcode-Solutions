@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        stack<pair<int,int>>st;
+        vector<int>answers(temperatures.size());
+        for(int i=0;i<temperatures.size();i++){
+            if(st.empty()){
+                st.push(make_pair(temperatures[i],i));
+            }
+            else{
+                while((not(st.empty()))and(st.top().first<temperatures[i])){
+                    answers[st.top().second]=i-st.top().second;
+                    st.pop();
+
+                }
+                st.push(make_pair(temperatures[i],i));
+
+            }
+        }
+    return answers;
+    }
+};
