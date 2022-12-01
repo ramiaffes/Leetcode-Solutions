@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        map<char,char>adj;
+        vector<string>res;
+        for(int i=0;i<words.size();i++){
+            adj.clear();
+            for(int j=0;j<pattern.length();j++){
+                adj[words[i][j]]=pattern[j];
+            }
+        string s(pattern.length(),' ');
+        set<char>se;
+        for(int j=0;j<pattern.length();j++){
+            s[j]=adj[words[i][j]];
+            se.insert(words[i][j]);
+        }
+        bool test=true;
+        map<char,bool>vis;
+        for(auto v:se){
+            if(vis[adj[v]])test=false;
+            vis[adj[v]]=1;
+        }
+        if(test==false)continue;
+        if(s==pattern){;
+            res.push_back(words[i]);
+        }
+        
+        }
+    return res;
+    }
+};
