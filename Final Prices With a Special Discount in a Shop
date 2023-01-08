@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+       stack<int>st;
+       map<int,int>hashing;
+       for(int i=0;i<prices.size();i++){
+          while((not(st.empty()))and(prices[st.top()]>=prices[i])){
+              hashing[st.top()]=prices[i]+1;
+              st.pop();
+          }
+        st.push(i);
+       }
+    vector<int>answer(prices.size());
+    for(int i=0;i<prices.size();i++){
+        if(hashing[i]==0)answer[i]=prices[i];
+        else answer[i]=prices[i]-(hashing[i]-1);
+    }
+    return answer;
+    }
+};
