@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        sort(sentence.begin(),sentence.end());
+        auto it= unique(sentence.begin(), sentence.end());
+    sentence.resize(distance(sentence.begin(), it));
+    return sentence=="abcdefghijklmnopqrstuvwxyz";
+
+    }
+};
