@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int longestStrChain(vector<string>& words) {
+        vector<pair<int,string>>res;
+        for(int i=0;i<words.size();i++){
+            res.push_back(make_pair(words[i].length(),words[i]));
+        }
+    sort(res.begin(),res.end());
+    map<string,bool>vis;
+    map<string,int>dp;
+     for(int i=0;i<res.size();i++){
+         dp[res[i].second]=1;
+         vis[res[i].second]=1;
+     }
+    for(int i=0;i<res.size();i++){
+        for(int j=0;j<res[i].second.length();j++){
+            string val=res[i].second;
+            val.erase(j,1);
+            if(vis[val])
+            dp[res[i].second]=max(dp[val]+1,dp[res[i].second]);
+            
+        }
+    }
+    int ans=0;
+    for(auto v:dp){ans=max(ans,v.second);}
+    return ans;
+    }
+};
