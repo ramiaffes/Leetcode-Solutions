@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> groupThePeople(vector<int>& groupSizes) {
+        map<int,int>hashing;
+        for(int i=0;i<groupSizes.size();i++){
+            hashing[groupSizes[i]]++;
+        }
+   map<int,vector<vector<int>>>res;
+    for(int i=0;i<groupSizes.size();i++){
+        if(hashing[groupSizes[i]]%groupSizes[i]==0){
+            vector<int>res1;
+            res1.push_back(i);
+            res[groupSizes[i]].push_back(res1);
+        }
+    else{
+          res[groupSizes[i]][res[groupSizes[i]].size()-1].push_back(i);
+    }
+    hashing[groupSizes[i]]--;
+    }
+    vector<vector<int>>a;
+    for(auto v:res){
+        a.insert(a.end(), v.second.begin(), v.second.end());
+    }
+    return a;
+    }
+};
