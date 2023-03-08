@@ -1,0 +1,46 @@
+bool in(set<char>se1,set<char>se2){
+    for(auto v:se1){
+        if(se2.find(v)==se2.end())return false;
+    }
+    return true;
+}
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+       int val1=0;
+    
+    set<char>se;
+    vector<set<char>>vect(s.length());
+    for(int i=s.length()-1;i>=0;i--){
+        se.insert(s[i]);
+        vect[i]=se;
+    }
+    vector<char>res(vect[0].begin(),vect[0].end());
+    string sh;
+    set<char>val2=vect[0];
+    while(val1<s.length()){  
+        if(val2.empty())break;
+        
+        for(int i=0;i<res.size();i++)
+        {
+            
+           int val33=val1;
+            while((val33<s.length())and(res[i]!=s[val33])){val33++;}
+            if(val33==s.length())continue;
+            string var3(1,res[i]);
+            if((sh.find(var3)==string::npos)and(in(val2, vect[val33]))){
+                
+                sh.append(var3);
+                val2.erase(res[i]);
+                val1=val33;
+                break;
+
+
+            }
+        }
+    
+    }
+
+return sh; 
+    }
+};
