@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool checkIfExist(vector<int>& arr) {
+        map<int,int>hashing;
+        for(int i=0;i<arr.size();i++){
+            hashing[arr[i]]+=1;
+        }
+        if(hashing[0]>=2)return true;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]==0)continue;
+            if(hashing[2*arr[i]])return true;
+        }
+        return false;
+    }
+};
