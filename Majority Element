@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        map<int,int>hashing;
+        for(int i=0;i<nums.size();i++){
+            hashing[nums[i]]++;
+        }
+    for(auto v:hashing){
+        if(v.second>=(nums.size()/2+nums.size()%2)){return v.first;}
+    }
+    return -1;
+    }
+};
