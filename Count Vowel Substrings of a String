@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int countVowelSubstrings(string word) {
+        int i=0;
+        int j=0;
+        int val=0;
+        string s="aeiou";
+        int som=0;
+        map<char,int>hashing;
+        while(j<word.length()){
+            if(s.find(word[j])==string::npos){
+                i=j+1;
+                j=j+1;
+                hashing.clear();
+                val=j;
+                continue;
+            }
+        else{
+            hashing[word[j]]++;
+            
+            while((i<j)and(hashing[word[i]]>=2)){
+                hashing[word[i]]--;
+                i++;
+            }
+        if((hashing['a']>=1)and(hashing['e']>=1)and(hashing['i']>=1)and(hashing['o']>=1)and(hashing['u']>=1)){
+            som+=i+1-val;
+        }        
+        }
+        
+        j++;
+        }
+
+       return som; 
+    }
+};
