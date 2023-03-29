@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int maxRepOpt1(string text) {
+        int som=1;
+        int ans=0;
+        map<char,int>hashing;
+        vector<int>res;
+        for(int i=0;i<(text.length()-1);i++){
+            if(text[i]==text[i+1]){
+                som++;
+            }
+        else{
+            res.push_back(som);
+            som=1;
+        }
+        }
+    res.push_back(som);
+   
+    auto ip = unique(text.begin(), text.end());
+    text.resize(distance(text.begin(), ip));
+     for(int i=0;i<text.length();i++){
+         hashing[text[i]]++;
+     }
+    for(int i=0;i<(text.length());i++){
+        if(hashing[text[i]]>=2){
+            ans=max(ans,res[i]+1);
+        }
+    else{
+        ans=max(ans,res[i]);
+    }
+    }
+for(int i=1;i<(text.length()-1);i++){
+    if(res[i]==1){
+        if(text[i-1]==text[i+1]){
+            if(hashing[text[i-1]]>2){
+        ans=max(ans,res[i-1]+res[i+1]+1);
+       }
+        else ans=max(ans,res[i-1]+res[i+1]);}
+
+    }
+}
+return ans;
+
+
+    
+    }
+};
