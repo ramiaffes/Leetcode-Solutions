@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int takeCharacters(string s, int k) {
+        if(k==0)return 0;
+        int ans=s.length()+1;
+        if(s.length()==1){if(k==0)return 0;
+        else return -1;}
+        int j=s.length()-1;
+        int i=0;
+        map<char,int>hashing;
+        hashing[s[i]]++;
+       
+        while(j>i){
+            hashing[s[j]]++;
+            if((hashing['c']>=k)and(hashing['a']>=k)and(hashing['b']>=k)){break;}
+            j--;
+        }
+    int val=s.length()-j+i+1;
+  
+    if((hashing['c']>=k)and(hashing['a']>=k)and(hashing['b']>=k)){ans=min(ans,val);   i++;
+    while(i<(s.length()-1)){
+        hashing[s[i]]++;
+        if(i==j){hashing[s[j]]--;j++;}
+        while((j<s.length())and(hashing[s[j]]>k)){
+            hashing[s[j]]--;
+            j++;
+        }
+        if(j==s.length())break;
+        int val=s.length()-j+i+1;
+        ans=min(ans,val);
+        i++;
+    }
+hashing.clear();
+for(int i=0;i<s.length();i++){
+    hashing[s[i]]++;
+    if((hashing['c']>=k)and(hashing['a']>=k)and(hashing['b']>=k)){ans=min(ans,i+1);break;}
+}}
+hashing.clear();
+for(int i=s.length()-1;i>=0;i--){
+    hashing[s[i]]++;
+    int val=s.length()-i;
+    if((hashing['c']>=k)and(hashing['a']>=k)and(hashing['b']>=k)){ans=min(ans,val);break;}
+}
