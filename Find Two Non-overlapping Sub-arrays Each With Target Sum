@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int minSumOfLengths(vector<int>& arr, int target) {
+        vector<int>dp(arr.size());
+        dp[0]=arr[0];
+        for(int i=1;i<arr.size();i++){
+           dp[i]= dp[i-1];
+           dp[i]+=arr[i];
+        }
+        vector<int>dp1(arr.size());
+        dp1[arr.size()-1]=arr[arr.size()-1];
+        for(int i=arr.size()-2;i>=0;i--){
+           dp1[i]= dp1[i+1];
+           dp1[i]+=arr[i];
+        }
+    int ans=1e9;
+    map<int,bool>vis;
+    vector<int>dp2(arr.size());
+    map<int,int>hashing;
+    for(int i=0;i<arr.size();i++){ 
+        if(vis[dp[i]-target]!=0)
+        ans=min(ans,i-hashing[dp[i]-target]);
+        dp2[i]=ans;
+        hashing[dp[i]]=i;
+        vis[dp[i]]=1;
+        if(dp[i]==target){
+            ans=min(ans,i+1);
+            dp2[i]=ans;
+
+        }
+    }
+    vector<int>dp3(arr.size());
+    hashing.clear();
+ans=1e9;
+vis.clear();
+for(int i=arr.size()-1;i>=0;i--){
+
+if(vis[dp1[i]-target]!=0){
+    int val=arr.size()-i-(arr.size()-hashing[dp1[i]-target]);
+ans=min(ans,val);}
+dp3[i]=ans;
+hashing[dp1[i]]=i;
+vis[dp1[i]]=1;
+ if(dp1[i]==target){
+     int val=arr.size()-i;
+            ans=min(ans,val);
+            dp3[i]=ans;
+
+        }
+
+}
+int res=1e9;
+for(int i=0;i<(arr.size()-1);i++){
+    res=min(res,dp2[i]+dp3[i+1]);
+}
+if(res>=1e9)return -1;
+else return res;
+
+
+
+
+
+    
+    
+        
+    }
+};
