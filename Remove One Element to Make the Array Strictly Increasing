@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool canBeIncreasing(vector<int>& nums) {
+        vector<bool>dp(nums.size());
+        dp[0]=true;
+        for(int i=1;i<nums.size();i++){
+            dp[i]=dp[i-1] and(nums[i-1]<nums[i]);
+        }
+     vector<bool>dp1(nums.size());
+     dp1[nums.size()-1]=true;
+     for(int i=nums.size()-2;i>=0;i--){
+         dp1[i]=dp1[i+1]and(nums[i]<nums[i+1]);
+     }
+    if(dp1[0]==true)return true;
+    for(int i=1;i<(nums.size()-1);i++){
+        if((dp1[i+1]==true)and(dp[i-1]==true)and(nums[i+1]>nums[i-1]))return true;
+    }
+    if(dp[nums.size()-2])return true;
+    if(dp1[1])return true;
+    return false;
+    
+    }
+};
