@@ -1,0 +1,41 @@
+class MyCalendar {
+public:
+vector<int>res1;
+vector<int>res2;
+    MyCalendar() {
+       res1.clear();
+       res2.clear();
+
+    }
+    bool book(int start, int end) {
+        
+        if((res1.size()==0)and(res2.size()==0)){
+            res1.push_back(start);
+            res2.push_back(end-1);
+            return true;
+        }
+        auto it=lower_bound(res2.begin(),res2.end(),start);
+        if(it==res2.end()){
+            res1.push_back(start);
+            res2.push_back(end-1);
+            return true;
+        }
+        if(*it==start){
+            return false;
+        }
+        int val=it-res2.begin();
+        if(res1[val]>(end-1)){
+            res1.insert(res1.begin()+(it-res2.begin()),start);
+            res2.insert(it,end-1);
+            return true;
+        }
+        return false;
+    
+    }
+};
+
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar* obj = new MyCalendar();
+ * bool param_1 = obj->book(start,end);
+ */
