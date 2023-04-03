@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+        sort(hand.begin(),hand.end());
+        map<int,int>hashing;
+        for(int i=0;i<hand.size();i++){
+            hashing[hand[i]]++;
+        }
+   
+    auto ip = unique(hand.begin(), hand.end());
+    hand.resize(distance(hand.begin(), ip));
+    for(int i=0;i<hand.size();i++){
+        if((i+groupSize)>hand.size()) {break;}
+        int val=hashing[hand[i]];
+        if(val==0)continue;
+        for(int j=i;j<(i+groupSize);j++){
+            if(hand[j]!=(hand[i]+j-i)){
+               
+                return false;
+            }
+        if(hashing[hand[j]]<val)return false;
+        hashing[hand[j]]-=val;
+
+        }
+    }
+    for(int i=0;i<hand.size();i++){
+        if(hashing[hand[i]]!=0){return false;}
+    }
+    return true;
+        
+    }
+};
