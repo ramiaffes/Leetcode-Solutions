@@ -7,7 +7,7 @@ public:
             dq.pop_back();
             dq.push_front(val);
         }
-    vector<int>nums1(dq.begin(),dq.end());
-        nums=nums1;
+    nums.assign(dq.begin(),dq.end());
+        
     }
 };
