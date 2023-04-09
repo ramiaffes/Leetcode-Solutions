@@ -1,0 +1,5 @@
+# Write your MySQL query statement below
+select user_id,DATE_FORMAT(FROM_UNIXTIME(max(UNIX_TIMESTAMP(time_stamp))),'%Y-%m-%d %H:%i:%s') as last_stamp 
+from Logins
+where((UNIX_TIMESTAMP(time_stamp)>=(UNIX_TIMESTAMP('2020-01-01')))and(UNIX_TIMESTAMP(time_stamp)<(UNIX_TIMESTAMP('2021-01-01'))))
+group by user_id;
