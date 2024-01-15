@@ -1,11 +1,9 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        map<int,int>vis1;
         map<int,int>vis2;
         set<int>se;
         for(int i=0;i<matches.size();i++){
-            vis1[matches[i][0]]=1;
             vis2[matches[i][1]]+=1;
             se.insert(matches[i][0]);
             se.insert(matches[i][1]);
