@@ -36,7 +36,6 @@ void bfs1(int src){
 			dist2[v]=min(dist2[v],(dist2[u]+1));
 			q.push(v);}
 		}}
-    int som=0;
     void bfs3(int src,int k){
 	dist3[src]=0;
 	queue<int>q;
@@ -45,17 +44,14 @@ void bfs1(int src){
 		int u=q.front();
 		q.pop();
 		for(auto v:adj1[u]){
-            
-			cout<<v<<" "<<dist1[v]<<" "<<dist2[v]<<endl;
             if((dist2[v]+dist1[u])<=k){
 			dist3[v]=min(dist3[v],(dist3[u]+price[make_pair(u,v)]));
-            cout<<dist3[v]<<endl;if(vis2[make_pair(u,v)]==1)continue;
+            if(vis2[make_pair(u,v)]==1)continue;
             vis2[make_pair(u,v)]=1;q.push(v);}
 			}
 		}}
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
         adj1.clear();
-        som=0;
         adj2.clear();
         vis.clear();
         dist1.clear();
