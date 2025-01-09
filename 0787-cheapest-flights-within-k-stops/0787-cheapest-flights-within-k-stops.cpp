@@ -3,6 +3,7 @@ public:
  map<int,vector<int>>adj1;
  map<int,vector<int>>adj2;
 map<int,bool>vis;
+map<pair<int,int>,bool>vis2;
 map<int , int> dist1;
 map<int , int> dist2;
 map<int , int> dist3;
@@ -43,13 +44,13 @@ void bfs1(int src){
 	while(!q.empty()){
 		int u=q.front();
 		q.pop();
-		if(vis[u])continue;
-		vis[u]=1;
 		for(auto v:adj1[u]){
+            
 			cout<<v<<" "<<dist1[v]<<" "<<dist2[v]<<endl;
             if((dist2[v]+dist1[u])<=k){
 			dist3[v]=min(dist3[v],(dist3[u]+price[make_pair(u,v)]));
-            cout<<dist3[v]<<endl;q.push(v);}
+            cout<<dist3[v]<<endl;if(vis2[make_pair(u,v)]==1)continue;
+            vis2[make_pair(u,v)]=1;q.push(v);}
 			}
 		}}
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
