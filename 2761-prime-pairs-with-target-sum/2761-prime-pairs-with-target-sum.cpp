@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> findPrimePairs(int n) {
-      bool prime[1000000];
+      bool prime[1000001];
     memset(prime, true, sizeof(prime));
     prime[1]=false;
     for (long long int p = 2; p * p <= n; p++) {
