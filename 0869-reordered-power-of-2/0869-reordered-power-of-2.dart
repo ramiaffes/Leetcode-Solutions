@@ -1,0 +1,23 @@
+class Solution {
+  bool reorderedPowerOf2(int n) {
+var vis={};
+      int p=1;
+    String str=n.toString();
+     List<String> lis =str.split("");
+      lis.sort();
+      str=lis.reversed.join('');
+      int n1=int.parse(str);
+    while(p<=n1){
+        vis[p]=1;
+        p*=2;
+    }
+    for(var key in vis.keys){
+        String str1=key.toString();
+        lis =str1.split("");
+        lis.sort();
+      str1=lis.reversed.join('');
+        if(str==str1)return true;
+    }
+    return false;
+  }
+}
