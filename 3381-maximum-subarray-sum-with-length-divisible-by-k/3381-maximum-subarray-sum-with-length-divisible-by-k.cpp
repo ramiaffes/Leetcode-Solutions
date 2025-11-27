@@ -22,19 +22,18 @@ public:
         hashing[0]=nums[nums.size()-1];
         vis[0]=1;
         for(int i=nums.size()-2;i>=0;i--){
-      if(vis[(nums.size()-i-1)%k]==0)hashing[(nums.size()-i-1)%k]=1e9;
+      if(vis[(nums.size()-i-1)%k]==0)hashing[(nums.size()-i-1)%k]=1e15;
       hashing[(nums.size()-i-1)%k]=min(dp2[i],hashing[(nums.size()-i-1)%k]);
       dp3[i]=hashing[(nums.size()-i-1)%k]; 
          vis[(nums.size()-i-1)%k]=1; 
         }
-        long long int ans=-1e9;
+        long long int ans=-1e15;
         if(nums.size()%k==0){
             ans=max(ans,dp[nums.size()-1]);
         }
         
         for(int i=0;i<nums.size();i++){
             if((i+k+1)>=nums.size())break;
-            cout<<dp3[2]<<endl;
             ans=max(ans,dp[nums.size()-1]-dp3[(i+k+1)]-dp[i]);
         }
         for(int i=0;i<(nums.size()-1);i++){
