@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int sumFourDivisors(vector<int>& nums) {
+        set<int>se;int som=0;
+        for(int i=0;i<nums.size();i++){
+            for(int j=1;j*j<=nums[i];j++){
+                if(nums[i]%j==0){
+                    se.insert(nums[i]/j);
+                    se.insert(j);
+                }
+            }
+        if(se.size()==4){
+             for(auto v:se){som+=v;}
+        }
+        se.clear();
+        }
+    
+   
+    return som;
+    }
+};
