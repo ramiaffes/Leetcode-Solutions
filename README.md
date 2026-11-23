@@ -6,6 +6,7 @@ leetcode profile:https://leetcode.com/ramiaffes/
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [1352-product-of-the-last-k-numbers](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/1352-product-of-the-last-k-numbers/) | Medium |
 | [2567-minimum-score-by-changing-two-elements](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/2567-minimum-score-by-changing-two-elements/) | Medium |
 | [3105-longest-strictly-increasing-or-strictly-decreasing-subarray](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/3105-longest-strictly-increasing-or-strictly-decreasing-subarray/) | Easy |
 ## Greedy
@@ -20,4 +21,20 @@ leetcode profile:https://leetcode.com/ramiaffes/
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [2124-check-if-all-as-appears-before-all-bs](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/2124-check-if-all-as-appears-before-all-bs/) | Easy |
+## Math
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1352-product-of-the-last-k-numbers](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/1352-product-of-the-last-k-numbers/) | Medium |
+## Design
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1352-product-of-the-last-k-numbers](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/1352-product-of-the-last-k-numbers/) | Medium |
+## Data Stream
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1352-product-of-the-last-k-numbers](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/1352-product-of-the-last-k-numbers/) | Medium |
+## Prefix Sum
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [1352-product-of-the-last-k-numbers](https://github.com/ramiaffes/Leetcode-Solutions/tree/main/1352-product-of-the-last-k-numbers/) | Medium |
 <!---LeetCode Topics End-->
